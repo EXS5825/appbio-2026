@@ -12,5 +12,11 @@ Q: Show commands that create files in different directories
   4. cd directory2
   5. touch hello2
 Q: Show how to access these files using relative and absolute paths.
-     relative: 
-     absolute: /Users/exs5825/
+     relative:
+         cd directory1
+         open . hello1
+         cd directory2
+         open . hello2 
+     absolute:
+         cd /Users/exs5825/Desktop/BMMB_852/parent-directory/directory1/
+         open . hello1
