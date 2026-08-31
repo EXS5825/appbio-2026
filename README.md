@@ -1,1 +1,1 @@
-# Homework Assignments for BMMB 852
+# Homework Assignments for BMMB 852 Week 1
