@@ -1,3 +1,4 @@
+# Homework Assignment 1
 AI ready code editor: Visual Studio Code
 
 What version is your samtools command in the bioinfo environment? 1.24 (using htslib 1.24)
