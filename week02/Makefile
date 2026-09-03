@@ -12,14 +12,7 @@ $(ZIP_FILE):
 	datasets download genome accession $(ACCESSION) --include genome,gff3 --filename $(ZIP_FILE)
 
 $(FASTA): $(ZIP_FILE)
-	unzip -p $(ZIP_FILE) ncbi_dataset/data/$(ACCESSION)/$(ACCESSION)_genomic.fna > $(FASTA)
+	unzip -p $(ZIP_FILE) ncbi_dataset/data/$(ACCESSION)/$(ACCESSION)_GenAur_1.0_genomic.fna > $(FASTA)
 
 $(GFF): $(ZIP_FILE)
-	unzip -p $(ZIP_FILE) ncbi_dataset/data/$(ACCESSION)/genomic.gff > $(GFF)
-
-fasta: $(FASTA)
-gff:   $(GFF)
-
-clean:
-	rm -f $(ZIP_FILE) $(FASTA) $(GFF)
-	rm -rf $(UNZIP_DIR)
+	unzip -p $(ZIP_FILE) ncbi_dataset/data/$(ACCESSION)/genomic.gff
