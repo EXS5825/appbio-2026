@@ -6,7 +6,7 @@
 Accession number: GCA_000441915.1
 
 ## Process:
-Installed the NCBI datasets CLI tool using pixi: 
+### Installed the NCBI datasets CLI tool using pixi: 
 ```
 pixi global install ncbi-datasets-cli
 ```
@@ -15,4 +15,14 @@ Output:
 $ pixi global install ncbi-datasets-cli
 └── ncbi-datasets-cli: 18.36.0 (installed)
     └─ exposes: dataformat, datasets
+```
+### Made a makefile in my desired directory
+```
+nano makefile
+```
+Entered my code into the makefile. 
+
+Run the makefile. 
+```
+pixi run make
 ```
