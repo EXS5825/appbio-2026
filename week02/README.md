@@ -1,5 +1,13 @@
 # Homework Assignment 2
 
+## Select a genome of interest: *Genlisea aurea*. 
+
+*Genlisea aurea* is a weird plant that has no roots, instead forming leaves (with no chlorophyll) under the soil and trapping and digesting protozoans with them. This rare carnivorous plant also has one of the smallest genomes in the entire plant kingdom. For comparison, the classic plant model *Arabidopsis thaliana* has a genome size of ~135Mb ... *Genlisea aurea*'s genome comes it at only 63.36 Mb (over 70 times smaller and comparable to bacterial genome sizes)! 
+
+Chromosome count: n = 26
+
+Accession number: GCA_000441915.1
+
 ## How the Makefile should be used:
 Tell pixi to run the Makefile. 
 ```
@@ -22,14 +30,6 @@ total 364120
 -rw-r--r--  1 exs5825  staff   643B Sep  3 18:50 Makefile
 ```
 Check to make sure the FASTA and GFF are reasonable sizes (43M and 114M, respectively).
-
-## Select a genome of interest: *Genlisea aurea*. 
-
-*Genlisea aurea* is a weird plant that has no roots, instead forming leaves (with no chlorophyll) under the soil and trapping and digesting protozoans with them. This rare carnivorous plant also has one of the smallest genomes in the entire plant kingdom. For comparison, the classic plant model *Arabidopsis thaliana* has a genome size of ~135Mb ... *Genlisea aurea*'s genome comes it at only 63.36 Mb (over 70 times smaller and comparable to bacterial genome sizes)! 
-
-Chromosome count: n = 26
-
-Accession number: GCA_000441915.1
 
 ### How many annotations are in the annotation file?
 Count the number of genes in the file. 
