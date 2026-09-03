@@ -8,7 +8,10 @@ Chromosome count: n = 26
 Accession number: GCA_000441915.1
 
 ### How many annotations are in the annotation file?
-
+```
+awk '$3=="gene"' ./GCA_000441915.1_genomic.gff | wc -l
+```
+There are 17685 annotations in the GFF file. 
 
 ### How complete is this genomic build in your opinion?
 This genomic build is a scaffold-level, which is moderately complete at the sequence level but lacks chromosome-level structure. 
