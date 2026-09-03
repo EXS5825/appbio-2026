@@ -5,24 +5,25 @@
 
 Accession number: GCA_000441915.1
 
-## Process:
-### Installed the NCBI datasets CLI tool using pixi: 
+## How the Makefile should be used:
+Tell pixi to run the Makefile. 
 ```
-pixi global install ncbi-datasets-cli
+pixi run makefile
+```
+Output:
+unzip -p GCA_000441915.1.zip ncbi_dataset/data/GCA_000441915.1/GCA_000441915.1_GenAur_1.0_genomic.fna > GCA_000441915.1_genomic.fna
+(bioinfo) 
+
+Check out the files.
+```
+ls -lh
 ```
 Output:
 ```
-$ pixi global install ncbi-datasets-cli
-└── ncbi-datasets-cli: 18.36.0 (installed)
-    └─ exposes: dataformat, datasets
+total 364120
+-rw-r--r--  1 exs5825  staff    21M Sep  3 18:42 GCA_000441915.1.zip
+-rw-r--r--  1 exs5825  staff    43M Sep  3 18:51 GCA_000441915.1_genomic.fna
+-rw-r--r--  1 exs5825  staff   114M Sep  3 18:46 GCA_000441915.1_genomic.gff
+-rw-r--r--  1 exs5825  staff   643B Sep  3 18:50 Makefile
 ```
-### Made a makefile in my desired directory
-```
-nano makefile
-```
-Entered my code into the makefile. 
-
-Run the makefile. 
-```
-pixi run make
-```
+Check to make sure the FASTA and GFF are reasonable sizes (43M and 114M, respectively).
