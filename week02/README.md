@@ -1,23 +1,4 @@
 # Homework Assignment 2
-## Select a genome of interest: *Genlisea aurea*. 
-
-*Genlisea aurea* is a weird plant that has no roots, instead forming leaves (with no chlorophyll) under the soil and trapping and digesting protozoans with them. This rare carnivorous plant also has one of the smallest genomes in the entire plant kingdom. For comparison, the classic plant model *Arabidopsis thaliana* has a genome size of ~135Mb ... *Genlisea aurea*'s genome comes it at only 63.36 Mb (over 70 times smaller and comparable to bacterial genome sizes)! 
-
-Chromosome count: n = 26
-
-Accession number: GCA_000441915.1
-
-### How many annotations are in the annotation file?
-Count the number of genes in the file. 
-```
-awk '$3=="gene"' ./GCA_000441915.1_genomic.gff | wc -l
-```
-There are 17685 annotations in the GFF file. 
-
-### How complete is this genomic build in your opinion?
-This genomic build is a scaffold-level, which is moderately complete at the sequence level but lacks chromosome-level structure. 
-
-I could run a BUSCO to look at sequence completeness, but considering that this carnivorous plant has such a small genome (likely with lots of areas deleted) I don't know that it would be an accurate way to assess the completeness of this build. 
 
 ## How the Makefile should be used:
 Tell pixi to run the Makefile. 
@@ -42,3 +23,32 @@ total 364120
 ```
 Check to make sure the FASTA and GFF are reasonable sizes (43M and 114M, respectively).
 
+## Select a genome of interest: *Genlisea aurea*. 
+
+*Genlisea aurea* is a weird plant that has no roots, instead forming leaves (with no chlorophyll) under the soil and trapping and digesting protozoans with them. This rare carnivorous plant also has one of the smallest genomes in the entire plant kingdom. For comparison, the classic plant model *Arabidopsis thaliana* has a genome size of ~135Mb ... *Genlisea aurea*'s genome comes it at only 63.36 Mb (over 70 times smaller and comparable to bacterial genome sizes)! 
+
+Chromosome count: n = 26
+
+Accession number: GCA_000441915.1
+
+### How many annotations are in the annotation file?
+Count the number of genes in the file. 
+```
+awk '$3=="gene"' ./GCA_000441915.1_genomic.gff | wc -l
+```
+There are 17685 annotations in the GFF file. 
+
+### How complete is this genomic build in your opinion?
+This genomic build is a scaffold-level, which is moderately complete at the sequence level but lacks chromosome-level structure. 
+
+I could run a BUSCO to look at sequence completeness, but considering that this carnivorous plant has such a small genome (likely with lots of areas deleted) I don't know that it would be an accurate way to assess the completeness of this build. 
+
+### How tightly packed are the genes in this genome? Estimate the gene-to-gene distance via the browser.
+
+### Pick a coordinate on the chromosome and visually inspect the sequence regions around it. 
+
+### Describe all six reading frames (codons) that the coordinate could be part of.
+
+### Identify the type of feature displayed as a data track.
+
+### Color features by their strand orientation.
