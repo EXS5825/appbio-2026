@@ -8,6 +8,7 @@ Chromosome count: n = 26
 Accession number: GCA_000441915.1
 
 ### How many annotations are in the annotation file?
+Count the number of genes in the file. 
 ```
 awk '$3=="gene"' ./GCA_000441915.1_genomic.gff | wc -l
 ```
