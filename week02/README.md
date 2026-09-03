@@ -7,6 +7,14 @@ Chromosome count: n = 26
 
 Accession number: GCA_000441915.1
 
+How many annotations are in the annotation file?
+
+
+How complete is this genomic build in your opinion?
+This genomic build is a scaffold-level, which is moderately complete at the sequence level but lacks chromosome-level structure. 
+
+I could run a BUSCO to look at sequence completeness, but considering that this carnivorous plant has such a small genome (likely with lots of areas deleted) I don't know that it would be an accurate way to assess the completeness of this build. 
+
 ## How the Makefile should be used:
 Tell pixi to run the Makefile. 
 ```
@@ -29,3 +37,4 @@ total 364120
 -rw-r--r--  1 exs5825  staff   643B Sep  3 18:50 Makefile
 ```
 Check to make sure the FASTA and GFF are reasonable sizes (43M and 114M, respectively).
+
