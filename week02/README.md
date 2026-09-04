@@ -50,7 +50,7 @@ Gene density = number of genes ÷ total genome size (Mb)
 
 Gene density = 17685 ÷ 63.36 
 
-≈ 279 genes/Mb
+≈ **279 genes/Mb**
 
 This is much more tightly packed than humans (11-15 genes/Mb) but less tightly packed than bacteria (500-1000 genes/Mb) 
 
