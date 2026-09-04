@@ -14,8 +14,10 @@ Create the Makefile in the working directory, then tell pixi to run the Makefile
 pixi run makefile
 ```
 Output:
+```
 unzip -p GCA_000441915.1.zip ncbi_dataset/data/GCA_000441915.1/GCA_000441915.1_GenAur_1.0_genomic.fna > GCA_000441915.1_genomic.fna
-(bioinfo) 
+(bioinfo)
+```
 
 Check out the files.
 ```
