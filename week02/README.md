@@ -43,7 +43,12 @@ This genomic build is a scaffold-level, which is moderately complete at the sequ
 
 I could run a BUSCO to look at sequence completeness, but considering that this carnivorous plant has such a small genome (likely with lots of areas deleted) I don't know that it would be an accurate way to assess the completeness of this build. 
 
-## How tightly packed are the genes in this genome? Estimate the gene-to-gene distance via the browser.
+## How tightly packed are the genes in this genome? 
+Gene density = number of genes ÷ total genome size (Mb)
+
+Gene density = 17685 ÷ 63.36 ≈ 279
+
+## Estimate the gene-to-gene distance via the browser.
 
 ## Pick a coordinate on the chromosome and visually inspect the sequence regions around it. 
 
