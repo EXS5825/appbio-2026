@@ -46,7 +46,11 @@ I could run a BUSCO to look at sequence completeness, but considering that this 
 ## How tightly packed are the genes in this genome? 
 Gene density = number of genes ÷ total genome size (Mb)
 
-Gene density = 17685 ÷ 63.36 ≈ 279
+Gene density = 17685 ÷ 63.36 
+
+≈ 279 genes/Mb
+
+This is much more tightly packed than humans (11-15 genes/Mb) but less tightly packed than bacteria (500-1000 genes/Mb) 
 
 ## Estimate the gene-to-gene distance via the browser.
 
