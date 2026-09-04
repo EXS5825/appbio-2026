@@ -55,6 +55,13 @@ Gene density = 17685 ÷ 63.36
 This is much more tightly packed than humans (11-15 genes/Mb) but less tightly packed than bacteria (500-1000 genes/Mb) 
 
 ## Estimate the gene-to-gene distance via the browser.
+It varies based on area. Some regions appear to have less than 100 base pairs between genes:
+<img width="2272" height="558" alt="image" src="https://github.com/user-attachments/assets/ca0519d0-d399-4994-bec6-1170a71cf0fa" />
+
+Other areas have wider gaps of more than 1000 base pairs: 
+<img width="2252" height="542" alt="image" src="https://github.com/user-attachments/assets/c9db2904-9eb4-4291-8975-3a41aa4a1db3" />
+
+Caveat: This genome is not well-annotated. Many of the genes are hypothetical rather than confirmed. 
 
 ## Pick a coordinate on the chromosome and visually inspect the sequence regions around it. 
 
