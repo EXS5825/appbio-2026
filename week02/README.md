@@ -9,7 +9,7 @@ Chromosome count: n = 26
 Accession number: GCA_000441915.1
 
 ## How the Makefile should be used:
-Tell pixi to run the Makefile. 
+Create the Makefile in the working directory, then tell pixi to run the Makefile. 
 ```
 pixi run makefile
 ```
