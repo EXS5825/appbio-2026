@@ -63,10 +63,11 @@ Other areas have wider gaps of more than 1000 base pairs:
 
 Caveat: This genome is not well-annotated. Many of the genes are hypothetical rather than confirmed. 
 
-## Pick a coordinate on the chromosome and visually inspect the sequence regions around it. 
-
-## Describe all six reading frames (codons) that the coordinate could be part of.
+## Pick a coordinate on the chromosome and visually inspect the sequence regions around it. Describe all six reading frames (codons) that the coordinate could be part of.
+<img width="1582" height="986" alt="image" src="https://github.com/user-attachments/assets/11c794ca-9153-4088-a4ff-a17757084e9a" />
 
 ## Identify the type of feature displayed as a data track.
+Gene annotation from the GFF file. 
 
 ## Color features by their strand orientation.
+<img width="2256" height="752" alt="image" src="https://github.com/user-attachments/assets/7c4d866e-35ae-4ab4-95ab-d630dd746100" />
