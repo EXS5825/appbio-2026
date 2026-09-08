@@ -9,3 +9,6 @@ Use:
 make run
 ```
 To run the Makefile and open the genome browser. 
+
+This is what my genome browser looks like: 
+<img width="2556" height="664" alt="image" src="https://github.com/user-attachments/assets/ea0d9d23-5c1b-4fdc-a776-448dd7ebd912" />
