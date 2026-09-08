@@ -38,7 +38,7 @@ Count the number of genes in the file.
 ```
 awk '$3=="gene"' ./GCA_000441915.1_genomic.gff | wc -l
 ```
-There are 17685 annotations in the GFF file. 
+There are 17685 gene annotations in the GFF file. 
 
 ## How complete is this genomic build in your opinion?
 This genomic build is a scaffold-level, which is moderately complete at the sequence level but lacks chromosome-level structure. 
