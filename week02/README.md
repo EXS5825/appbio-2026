@@ -71,3 +71,5 @@ Gene annotation from the GFF file.
 
 ## Color features by their strand orientation.
 <img width="2256" height="752" alt="image" src="https://github.com/user-attachments/assets/7c4d866e-35ae-4ab4-95ab-d630dd746100" />
+
+Features on the positive strand are colored pink, while features on the negative strand are colored purple. 
