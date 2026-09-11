@@ -1,9 +1,27 @@
 # Homework Assignment 3
 For this assignment select one of the repositories you were assigned to peer-review.
 
-I chose Hairuo Wang's repository (https://github.com/hairuow622/appbio/tree/main/week01). 
+I chose Amy Choi's repository (https://github.com/amygchoi/appbio-2026/tree/main/week02). 
 
-### Fork the clone one of the repositories you were assigned to review.
+### Fork the clone of one of the repositories you were assigned to review.
+Forked Amy's repository: 
+<img width="2342" height="506" alt="image" src="https://github.com/user-attachments/assets/fae1a31f-8ea3-4853-90c2-868364c88b24" />
+
+Cloned the forked repository: 
+```
+git clone https://github.com/EXS5825/appbio-2027.git
+```
+
+Output: 
+```
+Cloning into 'appbio-2027'...
+remote: Enumerating objects: 62, done.
+remote: Counting objects: 100% (62/62), done.
+remote: Compressing objects: 100% (47/47), done.
+remote: Total 62 (delta 9), reused 53 (delta 5), pack-reused 0 (from 0)
+Receiving objects: 100% (62/62), 3.16 MiB | 9.42 MiB/s, done.
+Resolving deltas: 100% (9/9), done.
+```
 
 ### Verify that the code is not doing something dangerous.
 
