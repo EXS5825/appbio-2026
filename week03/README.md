@@ -24,10 +24,10 @@ Resolving deltas: 100% (9/9), done.
 ```
 
 ### Verify that the code is not doing something dangerous.
+Examined the file and made sure I understood what each line was doing. 
 
-### Evaluate the README.md of the assignment.
-
-### Does the README.md make it clear how to run the code and what the outcomes are?
+### Evaluate the README.md of the assignment. Does the README.md make it clear how to run the code and what the outcomes are?
+The README.md is very clear on how to run the code, with detailed and understandable descriptions. 
 
 ### Verify that the results are reproducible. Does the code do what the author says it does?
 
