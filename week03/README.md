@@ -33,7 +33,7 @@ cd week02
 
 open . Makefile
 
-``'
+```
 
 ### Verify that the code is not doing something dangerous.
 Examined the file and made sure I understood what each line was doing. 
