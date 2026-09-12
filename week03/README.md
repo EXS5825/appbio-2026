@@ -93,6 +93,9 @@ remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
 To https://github.com/EXS5825/appbio-2027.git
    1d81f90..b6ae6ef  main -> main
 ```
+On Github: 
+<img width="1828" height="126" alt="image" src="https://github.com/user-attachments/assets/1832a191-d821-4bd2-8a35-43bce5e3e2e9" />
+
 ### On the GitHub interface create a pull request to the original repository.
 
 ### The author will review the pull request and merge it if they agree with your changes.
