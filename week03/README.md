@@ -22,6 +22,18 @@ remote: Total 62 (delta 9), reused 53 (delta 5), pack-reused 0 (from 0)
 Receiving objects: 100% (62/62), 3.16 MiB | 9.42 MiB/s, done.
 Resolving deltas: 100% (9/9), done.
 ```
+Went into the repository.
+```
+cd appbio-2027
+
+```
+Then navigated to the file I wanted to edit. 
+```
+cd week02
+
+open . Makefile
+
+``'
 
 ### Verify that the code is not doing something dangerous.
 Examined the file and made sure I understood what each line was doing. 
@@ -48,10 +60,39 @@ I thought the AI's assessment of "robustness" was interesting:
 
 I am not used to thinking about how my code can "fail loudly" if something goes wrong, but this would be useful to keep in mind in the future! 
 
-### Make a change to the forked repository that addresses an issue you found.
+### Make a change to the forked repository that addresses an issue you found. 
+I chose to consolidate the URL variables: 
+
+Derive the FTP paths from a single base URL so changing the assembly only requires editing one line:
+```
+ACCESSION   := GCF_009734005.1
+ASSEMBLY    := ASM973400v2
+BASE_URL    := https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/009/734/005/$(ACCESSION)_$(ASSEMBLY)
+FASTA_URL   := $(BASE_URL)/$(ACCESSION)_$(ASSEMBLY)_genomic.fna.gz
+GFF_URL     := $(BASE_URL)/$(ACCESSION)_$(ASSEMBLY)_genomic.gff.gz
+```
+Still get the reproducibility benefit of pinning the assembly version, but it's now one edit to switch genomes instead of five.
 
 ### Commit and push the change to your fork.
+```
+git add .
 
+git commit -m "Consolidate the URL variables: Derive the FTP paths from a single base URL so changing the assembly only requires editing one line."
+
+git push origin main
+```
+After entering my username and temporary password, this was the output: 
+```
+Enumerating objects: 7, done.
+Counting objects: 100% (7/7), done.
+Delta compression using up to 10 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (4/4), 778 bytes | 778.00 KiB/s, done.
+Total 4 (delta 2), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
+To https://github.com/EXS5825/appbio-2027.git
+   1d81f90..b6ae6ef  main -> main
+```
 ### On the GitHub interface create a pull request to the original repository.
 
 ### The author will review the pull request and merge it if they agree with your changes.
