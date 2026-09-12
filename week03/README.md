@@ -30,12 +30,23 @@ Examined the file and made sure I understood what each line was doing.
 The README.md is very clear on how to run the code, with detailed and understandable descriptions. 
 
 ### Verify that the results are reproducible. Does the code do what the author says it does?
+Yes, the Makefile ran successfully. 
 
 ### Ask the AI Agent to compare your solution to theirs.
+I asked Claude to compare the two Makefiles. Here is its summary:
+
+"Makefile 2 (Amy's) is more production-ready: better organization, explicit pipeline stages, an index step, and robust download handling. Makefile 1 (mine) is simpler and more easily re-targeted to a different accession, but depends on the datasets CLI and produces a flatter, less structured output." 
 
 ### Ask the AI Agent to evaluate which solution it thinks is better.
+Overall, it selects Amy's as the better Makefile. The one caveat listed is that the FTP paths are hardcoded, making it more difficult to adapt the Makefile to a different genome (as opposed to the accession-driven design in my Makefile). 
 
 ### In a paragraph or two, summarize your findings above.
+Visually inspecting the code, my Makefile is much more basic and simple. It also has an easily-switchable accession variable that its parameters are structured around. This suits my purposes for this assignment, but Amy's code is more thorough in how she organizes and processes her data, especially for further use. 
+
+I thought the AI's assessment of "robustness" was interesting: 
+"Makefile 2's curl flags `(--fail --location --show-error)` make it fail loudly on HTTP errors and follow redirects, which is good practice. Makefile 1's datasets call has no equivalent error handling visible in the recipe, though the CLI likely handles this internally. The download-then-rename pattern in Makefile 2 `(--output $(FASTA_DOWNLOAD) && mv ... $@)` also prevents a partial file from being left behind as a valid target." 
+
+I am not used to thinking about how my code can "fail loudly" if something goes wrong, but this would be useful to keep in mind in the future! 
 
 ### Make a change to the forked repository that addresses an issue you found.
 
