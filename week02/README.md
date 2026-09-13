@@ -11,7 +11,7 @@ Accession number: GCA_000441915.1
 ## How the Makefile should be used:
 Create the Makefile in the working directory, then tell pixi to run the Makefile. 
 ```
-pixi run makefile
+make
 ```
 Output:
 ```
