@@ -96,3 +96,7 @@ On Github:
 
 ## On the GitHub interface create a pull request to the original repository. The author will review the pull request and merge it if they agree with your changes. Add the URL of the pull request to the README.md file.
 https://github.com/amygchoi/appbio-2026/pull/1
+
+Update: change was merged. 
+<img width="1806" height="348" alt="image" src="https://github.com/user-attachments/assets/8ee0a245-5951-48b5-9afd-2be85c2e8843" />
+
