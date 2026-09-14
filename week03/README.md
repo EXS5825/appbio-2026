@@ -25,14 +25,12 @@ Resolving deltas: 100% (9/9), done.
 Went into the repository.
 ```
 cd appbio-2027
-
 ```
 Then navigated to the file I wanted to edit. 
 ```
 cd week02
 
 open . Makefile
-
 ```
 
 ## Verify that the code is not doing something dangerous.
