@@ -36,7 +36,7 @@ open . Makefile
 ```
 
 ## Verify that the code is not doing something dangerous.
-Examined the file and made sure I understood what each line was doing. 
+Examined the file and made sure I understood what each line was doing. Used Claude to explain any lines that I didn't understand. 
 
 ## Evaluate the README.md of the assignment. Does the README.md make it clear how to run the code and what the outcomes are?
 The README.md is very clear on how to run the code, with detailed and understandable descriptions. 
@@ -45,7 +45,7 @@ The README.md is very clear on how to run the code, with detailed and understand
 Yes, the Makefile ran successfully. 
 
 ## Ask the AI Agent to compare your solution to theirs.
-I asked Claude to compare the two Makefiles. Here is its summary:
+I asked Claude to compare the two Makefiles (Prompt: "Please compare these two makefiles [pasted content]"). Here is its summary:
 
 "Makefile 2 (Amy's) is more production-ready: better organization, explicit pipeline stages, an index step, and robust download handling. Makefile 1 (mine) is simpler and more easily re-targeted to a different accession, but depends on the datasets CLI and produces a flatter, less structured output." 
 
