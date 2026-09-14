@@ -9,14 +9,20 @@ Chromosome count: n = 26
 Accession number: GCA_000441915.1
 
 ## How the Makefile should be used:
-Create the Makefile in the working directory, then tell pixi to run the Makefile. 
+Requirements: `make`, `unzip`, and the [NCBI `datasets` CLI](https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/) (e.g. installed in the `bioinfo` environment).
+
+From this `week02` directory, run:
 ```
-pixi run makefile
+make
 ```
-Output:
+This downloads the assembly and extracts the FASTA and GFF files. Other targets:
 ```
-unzip -p GCA_000441915.1.zip ncbi_dataset/data/GCA_000441915.1/GCA_000441915.1_GenAur_1.0_genomic.fna > GCA_000441915.1_genomic.fna
-(bioinfo)
+make clean   # remove the downloaded zip, FASTA, and GFF files
+```
+Output (last lines):
+```
+unzip -p GCA_000441915.1.zip "ncbi_dataset/data/GCA_000441915.1/*.fna" > GCA_000441915.1_genomic.fna
+unzip -p GCA_000441915.1.zip ncbi_dataset/data/GCA_000441915.1/genomic.gff > GCA_000441915.1_genomic.gff
 ```
 
 Check out the files.
