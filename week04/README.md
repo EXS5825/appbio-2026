@@ -26,4 +26,4 @@ Coverage = 31 Gb / 63.6 Mb
 
 Coverage = 487x
 
-At first I was surprised by the high number, but later as I thought about it the coverage made more sense. This is the smallest known angiosperm genome, and Illumina gives deep coverage. 
+At first I was surprised by the high number, but later as I thought about it the coverage made more sense. This is the smallest known angiosperm genome, and Illumina gives deep coverage. This makes me feel better about their ability to resolve repetitive regions and produce a good reference genome. 
