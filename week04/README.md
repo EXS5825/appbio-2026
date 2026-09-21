@@ -188,7 +188,23 @@ multiqc qc --outdir report
      write_results | Report      : report/multiqc_report.html
            multiqc | MultiQC complete
 ```
+Then viewed the report:
+```
+open report/multiqc_report.html
+```
 ### Discuss whether the QC step made a difference.
+Based on the QC report, the data looks really good! 
+
+Mean quality scores:
+<img width="1924" height="1006" alt="image" src="https://github.com/user-attachments/assets/438e1e5f-5f41-4091-9c9b-1e954ec34431" />
+
+The lowest point on this graph is still solidly in the green! 
+
+Per Sequence Quality scores: 
+<img width="1928" height="986" alt="image" src="https://github.com/user-attachments/assets/4d396547-0d8a-43df-9e89-a48917f4d4ed" />
+
+The vast majority of reads here are in the high-quality range. The data are unlikely to benefit from being trimmed in this case, as a trimmer would discard almost none of these reads anyway. 
+
 ### Make your Makefile generic enough to download reads from different sequencing platforms by changing the accession number alone.
 
 #### Commit changes to Github (as a reference for myself in the future):
