@@ -206,8 +206,24 @@ Per Sequence Quality scores:
 The vast majority of reads here are in the high-quality range. The data are unlikely to benefit from being trimmed in this case, as a trimmer would discard almost none of these reads anyway. 
 
 ### Make your Makefile generic enough to download reads from different sequencing platforms by changing the accession number alone.
+My prompt to Claude: Is this Makefile [attached Makefile from QC visualization] generic enough to download reads from different sequencing platforms by changing the accession number alone? 
 
-#### Commit changes to Github (as a reference for myself in the future):
+Claude's output [summarized]: 
+Pros to this Makefile: 
+* Changing ACCESSION alone will correctly download any SRA run — fastq-dump handles Illumina, PacBio, Nanopore, etc.
+* -X 100000 (read limit) is platform-agnostic.
+* multiqc is broadly compatible.
+
+Cons to this Makefile: 
+* --split-files and hardcoded _1/_2 suffixes — this is the biggest issue. --split-files produces _1.fastq/_2.fastq only for paired-end reads. Single-end runs (common in older Illumina, PacBio, Nanopore) produce just ACCESSION.fastq with no numeric suffix, so the fastqc command silently fails to find its inputs.
+* fastqc itself — FastQC is designed for short reads. It runs on long-read files without crashing, but the output is largely meaningless for PacBio/Nanopore. If cross-platform QC is a goal, you'd want NanoPlot or PycoQC for long reads.
+* 4 threads hardcoded — minor, but worth parameterising.
+
+I prioritized fixing the first issue. I like fastqc a lot, so I decided to keep it since it. 
+
+Claude's summary of the changes: "The key change is $(ACCESSION)*.fastq — the glob matches _1/_2 for paired-end, the bare accession for single-end, and even _1/_2/_3 for the occasional three-read layout (e.g. 10x Chromium with index reads), so you can swap accessions freely without touching anything else."
+
+#### Final changes were committed to Github (included this as a reference for myself in the future) :
 ```
 git add Makefile
 git commit -m "Add target and SRR accession to Makefile"
