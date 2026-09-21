@@ -15,6 +15,9 @@ This genome appears to be obscure, as only one group (Lomonosov Moscow State Uni
 - 623-bp library: SRX319576
 - 413-bp library: SRX312272
 
+<ins>Run Accession Numbers: <ins>
+- 623-bp: SRR929654
+- 414-bp: SRR916071
 
 ### 2) What is the breakdown by sequencing strategy and platform (or some other attribute)?
 Both of the libraries were sequenced using a paired-end short-read method (Illumina HiSeq 2000). 
