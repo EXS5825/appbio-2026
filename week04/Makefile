@@ -1,7 +1,8 @@
-ACCESSION := SRR929654
-FASTQ_DIR := fastq
-QC_DIR    := qc
+ACCESSION  := SRR929654
+FASTQ_DIR  := fastq
+QC_DIR     := qc
 REPORT_DIR := report
+THREADS    := 4
 
 all: download
 
@@ -11,10 +12,9 @@ download:
 
 qc: download
 	mkdir -p $(QC_DIR)
-	fastqc $(FASTQ_DIR)/$(ACCESSION)_1.fastq \
-	       $(FASTQ_DIR)/$(ACCESSION)_2.fastq \
+	fastqc $(FASTQ_DIR)/$(ACCESSION)*.fastq \
 	       --outdir $(QC_DIR) \
-	       --threads 4
+	       --threads $(THREADS)
 
 report: qc
 	mkdir -p $(REPORT_DIR)
@@ -24,3 +24,4 @@ clean:
 	rm -rf $(FASTQ_DIR) $(QC_DIR) $(REPORT_DIR)
 
 .PHONY: all download qc report clean
+
