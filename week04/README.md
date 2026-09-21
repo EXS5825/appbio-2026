@@ -77,11 +77,7 @@ total 107008
 Looks right for paired-end reads (the .1 is the forward, the .2 the reverse) both the same size (26M). 
 
 ### Run a QC visualization on the downloaded reads to generate a report.
-My prompt to Claude: "I have a Makefile (below) that downloads the first 100,000 reads from a sequencing run. How do I run a QC visualization on the downloaded reads to generate a report?"
-
-all:
-	mkdir -p fastq
-	fastq-dump -X 100000 --outdir fastq --split-files SRR929654
+My prompt to Claude: "I have a Makefile [attached my original from above] that downloads the first 100,000 reads from a sequencing run. How do I run a QC visualization on the downloaded reads to generate a report?"
 
 Claude's output: 
 ```
@@ -114,8 +110,84 @@ clean:
 ```
 Seems understandable and not overly complicated. 
 
-### Apply a QC method to the reads to see whether it makes a visual difference.
-### Run a QC visualization on the trimmed reads to generate a report.
+### Apply a QC method to the reads to see whether it makes a visual difference. Run a QC visualization on the trimmed reads to generate a report.
+Needed to install multiqc first. 
+```
+pixi add multiqc
+```
+Once it was successfully installed, run the report. 
+```
+pixi run make report
+```
+Output: 
+```
+mkdir -p fastq
+fastq-dump -X 100000 --outdir fastq --split-files SRR929654
+Read 100000 spots for SRR929654
+Written 100000 spots for SRR929654
+mkdir -p qc
+fastqc fastq/SRR929654_1.fastq \
+       fastq/SRR929654_2.fastq \
+       --outdir qc \
+       --threads 4
+null
+null
+Started analysis of SRR929654_1.fastq
+Approx 5% complete for SRR929654_1.fastq
+Approx 10% complete for SRR929654_1.fastq
+Approx 15% complete for SRR929654_1.fastq
+Approx 20% complete for SRR929654_1.fastq
+Approx 25% complete for SRR929654_1.fastq
+Approx 30% complete for SRR929654_1.fastq
+Approx 35% complete for SRR929654_1.fastq
+Approx 40% complete for SRR929654_1.fastq
+Approx 45% complete for SRR929654_1.fastq
+Approx 50% complete for SRR929654_1.fastq
+Approx 55% complete for SRR929654_1.fastq
+Approx 60% complete for SRR929654_1.fastq
+Approx 65% complete for SRR929654_1.fastq
+Approx 70% complete for SRR929654_1.fastq
+Approx 75% complete for SRR929654_1.fastq
+Approx 80% complete for SRR929654_1.fastq
+Approx 85% complete for SRR929654_1.fastq
+Approx 90% complete for SRR929654_1.fastq
+Started analysis of SRR929654_2.fastq
+Approx 5% complete for SRR929654_2.fastq
+Approx 95% complete for SRR929654_1.fastq
+Approx 100% complete for SRR929654_1.fastq
+Approx 10% complete for SRR929654_2.fastq
+Analysis complete for SRR929654_1.fastq
+Approx 15% complete for SRR929654_2.fastq
+Approx 20% complete for SRR929654_2.fastq
+Approx 25% complete for SRR929654_2.fastq
+Approx 30% complete for SRR929654_2.fastq
+Approx 35% complete for SRR929654_2.fastq
+Approx 40% complete for SRR929654_2.fastq
+Approx 45% complete for SRR929654_2.fastq
+Approx 50% complete for SRR929654_2.fastq
+Approx 55% complete for SRR929654_2.fastq
+Approx 60% complete for SRR929654_2.fastq
+Approx 65% complete for SRR929654_2.fastq
+Approx 70% complete for SRR929654_2.fastq
+Approx 75% complete for SRR929654_2.fastq
+Approx 80% complete for SRR929654_2.fastq
+Approx 85% complete for SRR929654_2.fastq
+Approx 90% complete for SRR929654_2.fastq
+Approx 95% complete for SRR929654_2.fastq
+Approx 100% complete for SRR929654_2.fastq
+Analysis complete for SRR929654_2.fastq
+mkdir -p report
+multiqc qc --outdir report
+
+/// MultiQC 🔍 v1.35
+
+       file_search | Search path: /Users/exs5825/Desktop/BMMB_852/week04/appbio-2026/week04/qc
+         searching | ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 4/4  
+            fastqc | Found 2 reports
+     write_results | Data        : report/multiqc_data
+     write_results | Report      : report/multiqc_report.html
+           multiqc | MultiQC complete
+```
 ### Discuss whether the QC step made a difference.
 ### Make your Makefile generic enough to download reads from different sequencing platforms by changing the accession number alone.
 
