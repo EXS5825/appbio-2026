@@ -3,6 +3,8 @@ Visit the SRA or ENA website and search for sequencing data deposited for the ge
 
 ## Experimental Evidence for the Genome
 ### 1) How "popular" is this genome? How many datasets are available?
+My genome is *Genlisea aurea*, a carnivorous plant that has one of the smallest known plant genomes. 
+
 This genome appears to be obscure, as only one group (Lomonosov Moscow State University) has ever sequenced it. The only two datasets from that group (a 623-bp library and a 413-bp library) were published in 2013. 
 
 <kbd>
