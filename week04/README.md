@@ -77,7 +77,7 @@ total 107008
 -rw-r--r--  1 exs5825  staff    26M Sep 20 21:05 SRR929654_1.fastq
 -rw-r--r--  1 exs5825  staff    26M Sep 20 21:05 SRR929654_2.fastq
 ```
-Looks right for paired-end reads (the .1 is the forward, the .2 the reverse) both the same size (26M). 
+Looks right for paired-end reads (the _1 is the forward, the _2 the reverse) both the same size (26M). 
 
 ### Run a QC visualization on the downloaded reads to generate a report.
 My prompt to Claude: "I have a Makefile [attached my original from above] that downloads the first 100,000 reads from a sequencing run. How do I run a QC visualization on the downloaded reads to generate a report?"
