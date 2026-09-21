@@ -226,6 +226,6 @@ Claude's summary of the changes: "The key change is $(ACCESSION)*.fastq — the 
 #### Final changes were committed to Github (included this as a reference for myself in the future) :
 ```
 git add Makefile
-git commit -m "Add target and SRR accession to Makefile"
+git commit -m "have a nice day :D"
 git push
 ```
