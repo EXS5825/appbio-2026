@@ -229,3 +229,26 @@ git add Makefile
 git commit -m "have a nice day!"
 git push
 ```
+
+## Reproducing this analysis
+Credit to [Shraman2000](https://github.com/shraman2000) for inspiring this section. 
+
+Make sure the bioinfo environment is activated first. 
+```
+# 1. Clone the repository
+git clone https://github.com/EXS5825/appbio-2026.git
+
+# 2. Navigate to the week04 folder
+cd appbio-2026/week04
+
+# 3. Run the pipeline
+make
+
+# 4. Additional QC targets
+make qc       # Runs FastQC on the downloaded FASTQ files → saves results to qc/
+make report   # Runs MultiQC on the QC results → saves report to report/
+
+# 5. Open and view the reports if desired.
+open qc/SRR929654_1_fastqc.html
+open qc/SRR929654_2_fastqc.html
+```
