@@ -3,9 +3,9 @@ Preliminary information:
 
 Organism: *Genlisea aurea*.
 
-Experiment from SRA website: 
+Experiment from SRA website: SRX319576
 
-Run: 
+Run: SRR929654
 
 <img width="832" height="148" alt="image" src="https://github.com/user-attachments/assets/1ea5521a-e777-4df3-9511-8a2e0e8d79a8" />
 
