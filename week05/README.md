@@ -40,7 +40,7 @@ Number of reads = (Desired coverage * Genome size) / Read length
 N = (10 × 191,761) / 151
 N ≈ 12,700 reads
 
-This is well below 1 million, so I'll move forward with this genome and sequencing run. 
+This is well below 1 million, so I'll move forward with this. 
 
 ## Write a Makefile that aligns the reads and creates a BAM file.
 I assume this is in addition to downloading the reads from the SRA database. 
