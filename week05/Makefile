@@ -34,7 +34,8 @@ Usage: make <target>
 
 Targets:
   download  Fetch FASTQ files from SRA
-  index     Index the reference genome (only needs to be done once)
+  genome    Fetch the reference genome FASTA
+  index     Index the reference genome
   align     Align reads to the reference genome
   flagstat  Generate a summary of the BAM file
   qc        Run FastQC on downloaded files
@@ -52,11 +53,14 @@ download:
 	mkdir -p $(FASTQ_DIR)
 	fastq-dump -X $(N) --outdir $(FASTQ_DIR) --split-files $(SRR)
 
-index:
+genome:
 	mkdir -p $(GENOME_DIR)
+	curl -o $(GENOME_FASTA) "$(GENOME_URL)"
+
+index: genome
 	bwa index $(GENOME_FASTA)
 
-align: download
+align: download index
 	mkdir -p $(BAM_DIR)
 	bwa mem $(GENOME_FASTA) $(FASTQ_1) $(FASTQ_2) | \
 	        samtools sort --write-index --output $(BAM)
@@ -77,4 +81,4 @@ report: qc
 clean:
 	rm -rf $(FASTQ_DIR) $(QC_DIR) $(REPORT_DIR) $(GENOME_DIR) $(BAM_DIR)
 
-.PHONY: usage download index align flagstat qc report clean
+.PHONY: usage download genome index align flagstat qc report clean
