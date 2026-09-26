@@ -44,7 +44,9 @@ This is well below 1 million, so I'll move forward with this.
 
 ## Write a Makefile that aligns the reads and creates a BAM file.
 To run the Makefile: 
-
+```
+make flagstat
+```
 
 ## Run a statistics report on the BAM file.
 What percent of the reads align?
