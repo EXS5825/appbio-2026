@@ -43,7 +43,8 @@ N ≈ 12,700 reads
 This is well below 1 million, so I'll move forward with this. 
 
 ## Write a Makefile that aligns the reads and creates a BAM file.
-I assume this is in addition to downloading the reads from the SRA database. 
+To run the Makefile: 
+
 
 ## Run a statistics report on the BAM file.
 What percent of the reads align?
