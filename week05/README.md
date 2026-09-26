@@ -1,5 +1,5 @@
 # Homework Assignment 5: Generate a BAM file
-Preliminary information: 
+<ins>Preliminary information:</ins>
 
 Organism: *Genlisea aurea*.
 
