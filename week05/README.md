@@ -11,7 +11,7 @@ Run: SRR929654
 
 <img width="832" height="148" alt="image" src="https://github.com/user-attachments/assets/1ea5521a-e777-4df3-9511-8a2e0e8d79a8" />
 
-## Estimate the N number of reads you should download to get a coverage of at least 10x. 
+### Estimate the N number of reads you should download to get a coverage of at least 10x. 
 Need 10 bases of coverage for every base in the genome (genome size = 63.6 Mb). Read length = ~201.8 bases (total bases divided by total spots)) 
 
 Number of reads = (Desired coverage * Genome size) / Read length
@@ -34,7 +34,7 @@ Run: SRR38913763
 <img width="972" height="146" alt="image" src="https://github.com/user-attachments/assets/3937f505-fa87-4104-acee-c6ec9f09dcbf" />
 
 
-## Estimate the N number of reads you should download to get a coverage of at least 10x.
+### Estimate the N number of reads you should download to get a coverage of at least 10x.
 Desired coverage = 10x, genome size = 13Mb, read length = 147 (total bases / total spots). 
 
 Number of reads = (Desired coverage * Genome size) / Read length 
