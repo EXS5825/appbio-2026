@@ -3,6 +3,8 @@
 
 Organism: *Genlisea aurea*.
 
+Genome size: 63.6 Mb
+
 Experiment from SRA website: SRX319576
 
 Run: SRR929654
