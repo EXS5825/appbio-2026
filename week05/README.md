@@ -55,11 +55,17 @@ The `flagstat` command gives me a stats report, which is quite long. Here are so
 * `0 + 0 with mate mapped to a different chr` --> none of the reads mapped to a different chromosome, which makes sense since this is a virus without defined chromosomes. 
 
 ## Visualize the BAM file in IGV.
-What do the alignments look like? Do the reads show errors or variations?
+### What do the alignments look like? Do the reads show errors or variations?
 
-Is the coverage uniform?
+Colored bases = mismatches, gray = bases match to reference genome. The reads do seem to have lots of variation and/or errors, judging from all the color that can be seen. Some are in consistent stripes (probably natural variation) across multiple lines, others seem to be a one-off difference, which may indicate errors: 
+<img width="2276" height="1308" alt="image" src="https://github.com/user-attachments/assets/4aafdb19-0303-4226-b271-489b099fadfb" />
 
-Include a screenshot of the BAM file in IGV.
+### Is the coverage uniform?
+It depends on the area. Some areas look like they have fairly consistent, good coverage: 
+<img width="2264" height="1302" alt="image" src="https://github.com/user-attachments/assets/60f751ea-a370-44e8-ac9e-a74556e1f554" />
+
+Other areas have gaps in coverage: 
+<img width="2280" height="1328" alt="image" src="https://github.com/user-attachments/assets/c38df7f2-881c-4756-87b3-d7c2cab3c7fc" />
 
 ## Write a README.md that a reviewer can follow.
 Reproducibility: 
