@@ -62,4 +62,20 @@ Is the coverage uniform?
 Include a screenshot of the BAM file in IGV.
 
 ## Write a README.md that a reviewer can follow.
-Include the commands needed to run the Makefile. 
+Reproducibility: 
+
+(Bioinfo environment activated)
+```
+# 1. Clone the repository
+git clone https://github.com/EXS5825/appbio-2026.git
+
+# 2. Navigate to the week05 folder
+cd appbio-2026/week05
+
+# 3. Run the pipeline
+make flagstat
+
+# 4. Clean
+make clean
+
+```
