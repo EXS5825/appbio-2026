@@ -45,7 +45,7 @@ This is well below 1 million, so I'll move forward with this.
 ## Write a Makefile that aligns the reads and creates a BAM file.
 I took my Makefile from last week and worked with Claude to fix some issues with it as well as adding the new information I needed for this week's assignment. 
 
-Improvements:
+<ins>Improvements:</ins>
 * Restructured Makefile to have # —- all definitions above the line, all code below the line —-
 * Added headers to everything
 * Added `.DELETE_ON_ERROR:` to stop partial files from being left behind and having subsequent steps silently using bad data from a failed `fastq-dump`.
@@ -53,7 +53,7 @@ Improvements:
 * Incorporated Makefile's `define` block to clean up a bunch of "echo" commands I was seeing
 * Reorganized some of the definitions to better fit into the categories of headers
 
-Added for this week's assignment: 
+<ins>Added for this week's assignment:</ins>
 * Changed the SRR number and added N (number of reads) to the definitions (using the number I calculated from before)
 * Added the reference genome URL, FASTQ_1 (first read file) and FASTQ_2 (second read file), a user-friendly name for the genome (Otv-1_REF), GENOME_FASTA = OtV-1_REF.fasta, and a user-friendly SAMPLE_NAME = OtV1_WGS
 * Added BAM file name that combined both datasets: SRR35893209_vs_OtV-1.bam
