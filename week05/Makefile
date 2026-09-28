@@ -13,7 +13,7 @@ THREADS    := 4
 N          := 12700
 
 # === REFERENCE GENOME ===
-GENOME_URL   := https://www.ncbi.nlm.nih.gov/nuccore/FN386611
+GENOME_URL   := https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=FN386611&rettype=fasta&retmode=text
 GENOME_NAME  := OtV-1_REF
 GENOME_FASTA := $(GENOME_DIR)/OtV-1_REF.fasta
 
@@ -63,7 +63,7 @@ index: genome
 align: download index
 	mkdir -p $(BAM_DIR)
 	bwa mem $(GENOME_FASTA) $(FASTQ_1) $(FASTQ_2) | \
-	        samtools sort --write-index --output $(BAM)
+	        samtools sort --write-index -o $(BAM)
 
 flagstat: align
 	samtools flagstat $(BAM)
