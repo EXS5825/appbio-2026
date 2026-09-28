@@ -48,8 +48,11 @@ To run the Makefile:
 make flagstat
 ```
 
-## Run a statistics report on the BAM file.
-What percent of the reads align?
+## Run a statistics report on the BAM file. What percent of the reads align? 
+The `flagstat` command gives me a stats report, which is quite long. Here are some of the key numbers: 
+* `22111 + 0 primary mapped (87.05% : N/A)` --> 87.05% of the reads aligned to the reference genome.
+* `21044 + 0 properly paired (82.85% : N/A)` --> 82.85% of the reads aligned in the expected orientation and distance.
+* `0 + 0 with mate mapped to a different chr` --> none of the reads mapped to a different chromosome, which makes sense since this is a virus without defined chromosomes. 
 
 ## Visualize the BAM file in IGV.
 What do the alignments look like? Do the reads show errors or variations?
