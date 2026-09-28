@@ -78,10 +78,10 @@ Colored bases = mismatches, gray = bases match to reference genome. The reads do
 <img width="2276" height="1308" alt="image" src="https://github.com/user-attachments/assets/4aafdb19-0303-4226-b271-489b099fadfb" />
 
 ### Is the coverage uniform?
-It depends on the area. Some areas look like they have fairly consistent, good coverage: 
+No, as indicated by the bumps and valleys in the top bar. The amount of variability depends on the area. 
 <img width="2264" height="1302" alt="image" src="https://github.com/user-attachments/assets/60f751ea-a370-44e8-ac9e-a74556e1f554" />
 
-Other areas have gaps in coverage: 
+Some areas have large gaps in coverage: 
 <img width="2280" height="1328" alt="image" src="https://github.com/user-attachments/assets/c38df7f2-881c-4756-87b3-d7c2cab3c7fc" />
 
 ## Write a README.md that a reviewer can follow.
