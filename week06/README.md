@@ -44,3 +44,14 @@ There seem to be two tandem duplication events here, shown by the two distinct p
 <img width="1192" height="934" alt="image" src="https://github.com/user-attachments/assets/23d4603e-588c-41cc-88cc-ce4494f41715" />
 
 ## Sample 5
+This one has some Christmas-colored mismatches. 
+<img width="1966" height="934" alt="image" src="https://github.com/user-attachments/assets/88837db6-7dac-4dfd-b59a-22680b7b291c" />
+Red reads --> normal F2R1 orientation but a much bigger insert size than expected. Looks like a large deletion. 
+
+Green reads --> wrong orientation (R2F1) + large span seems like an inverted segment. 
+
+Blue reads --> normal orientation but soft-clipped mates, so probably a breakpoint junction. 
+
+Scattered SNPs also visible across the rest of the genome. 
+
+Overall, looks like a complex structural rearrangement happened here with lots of different variations. 
