@@ -55,4 +55,4 @@ Blue reads --> normal orientation but soft-clipped mates, so probably a breakpoi
 
 Scattered SNPs also visible across the rest of the genome. 
 
-Overall, looks like a complex structural rearrangement happened here with lots of different variations. 
+Overall, looks like a complex structural rearrangement happened here with lots of different variations. Translocations?
