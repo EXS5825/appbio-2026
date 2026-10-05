@@ -40,7 +40,7 @@ Dark blue reads: F2R1 --> Normal orientation, insert size is smaller than expect
 
 These patterns are consistent across coverage. 
 
-There seem to be two tandem duplication events here:  
+There seem to be two tandem duplication events here, shown by the two distinct paired patterns of the teal/medium blue reads showing tandem duplications in opposite directions.   
 <img width="1192" height="934" alt="image" src="https://github.com/user-attachments/assets/23d4603e-588c-41cc-88cc-ce4494f41715" />
 
 ## Sample 5
