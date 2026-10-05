@@ -29,6 +29,18 @@ There's a lot more coverage to the left with those big peaks. There also seem to
 This points to a structural inversion!
 
 ## Sample 4
+This one has teal/blue areas that jump out immediately. 
+<img width="1960" height="944" alt="image" src="https://github.com/user-attachments/assets/c082db57-e811-4bab-a6f8-1b5a79234316" />
 
+The teal reads are F1F2 --> both reads are pointing forward, which seems like a tandem duplication. 
 
+Medium blue reads: R2R1 --> both reads are pointing backwards, which also seems like a tandem duplication in the opposite direction. 
 
+Dark blue reads: F2R1 --> Normal orientation, insert size is smaller than expected (-437) ... breakpoint-spanning reads? They also seem to be at the ends of the teal/medium blue portions, which would support this idea.  
+
+These patterns are consistent across coverage. 
+
+There seem to be two tandem duplication events here:  
+<img width="1192" height="934" alt="image" src="https://github.com/user-attachments/assets/23d4603e-588c-41cc-88cc-ce4494f41715" />
+
+## Sample 5
