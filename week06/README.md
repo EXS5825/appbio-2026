@@ -19,7 +19,7 @@ Overall, there seem to be lots of small insertions and deletions, especially SNP
 <img width="320" height="134" alt="image" src="https://github.com/user-attachments/assets/f05fbae9-d535-4f68-9cd1-8c60edff4c0c" />
 
 ## Sample 3
-Compared to sample two, this one has much higher coverage: 
+Compared to sample two, this one has much higher coverage in some areas: 
 <img width="126" height="286" alt="image" src="https://github.com/user-attachments/assets/106bc234-b83f-4904-98b9-465f1958976d" />
 
 As well as the coverage being less uniform: 
