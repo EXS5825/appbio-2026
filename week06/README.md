@@ -26,7 +26,7 @@ As well as the coverage being less uniform:
 <img width="2278" height="1260" alt="image" src="https://github.com/user-attachments/assets/10a24232-7856-43a3-ad66-c09dad8751cd" />
 There's a lot more coverage to the left with those big peaks. There also seem to be a lot of green sections clustered here. Clicking on one of the green sections reveals that the pair orientation is "R1F2", not F1R2 as expected. 
 <img width="518" height="552" alt="image" src="https://github.com/user-attachments/assets/11929a23-4220-4816-9ea9-6c810686aca8" />
-This points to a structural inversion!
+Tandem duplications? 
 
 ## Sample 4
 This one has teal/blue areas that jump out immediately. 
