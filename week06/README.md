@@ -12,3 +12,9 @@ Some of which were consistent across all reads with good coverage.
 Otherwise, there were other various small variations (the red/blue sections) but no large deletions or other significant structural arrangements. 
 
 ## Sample 2
+Sample 2 had a lot more going on.
+<img width="1932" height="1262" alt="image" src="https://github.com/user-attachments/assets/f75452be-a47a-4fec-bd71-0322c5998503" />
+
+The mismatches were much more sparse in sample 1, whereas here they almost seem everywhere. This could point to a highly mutated genome, or perhaps contamination of the sample/sequencing error. The ends seemed especially divergent, but I'm less likely to trust the ends of the sequencing runs, as errors are more common here. 
+<img width="320" height="134" alt="image" src="https://github.com/user-attachments/assets/f05fbae9-d535-4f68-9cd1-8c60edff4c0c" />
+
