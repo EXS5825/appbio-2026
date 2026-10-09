@@ -2,13 +2,11 @@
 Start with the previous BAM `Makefile` and add additional steps to call variants. 
 
 ## Write a Makefile that calls variants and creates a VCF file.
-Started with the `Makefile` from [Week 5](https://github.com/EXS5825/appbio-2026/tree/main/week05). 
+Started with the `Makefile` from [Week 5](https://github.com/EXS5825/appbio-2026/tree/main/week05). Incorporated material from Biostar Handbook for variant calling. 
 
-Prompt to Claude (incorporating material from Biostar Handbook): 
+**Prompt to Claude:**
 
-I have the following Makefile: [attached Makefile from Week 6]
-
-Add additional steps to call variants and create a VCF file following the same structure as before, using this framework: 
+I have the following Makefile: [attached Makefile from Week 6]. Add additional steps to call variants and create a VCF file following the same structure as before, using this framework: 
 ```
 # The reference genome FASTA file.
 FASTA=refs/genome.fa
