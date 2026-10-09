@@ -81,7 +81,8 @@ stats: variants
 
 To run the statistics report: 
 ```
-
+make stats
+```
 
 How many variants were called?
 
@@ -106,6 +107,9 @@ cd appbio-2026/week07
 # 3. Run everything up to and including variant calling
 make variants
 
-# 4. Clean
+# 4. Optionally, run the statistics report. 
+make stats
+
+# 5. Clean
 make clean
 ```
