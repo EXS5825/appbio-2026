@@ -70,6 +70,19 @@ xvariants: align
 ```
 
 ## Run a statistics report on the VCF file.
+Add bcftools stats to Makefile as new target:
+* in the variables section `STATS := $(VCF_DIR)/$(SAMPLE_NAME)_vs_$(GENOME_NAME).stats.txt`
+```
+# new target
+stats: variants
+    bcftools stats $(VCF) > $(STATS)
+```
+* `stats` added to both the usage text and `.PHONY`.
+
+To run the statistics report: 
+```
+
+
 How many variants were called?
 
 What kinds of variants are present?
