@@ -1,5 +1,17 @@
 # Homework Assignment 7: Generate a VCF file
-Start with the previous BAM `Makefile` and add additional steps to call variants. 
+Start with the previous BAM `Makefile` and add additional steps to call variants. I am still working with the *Ostreococcus tauri* virus (OtV1), a large ds-DNA virus that infects a single-celled green algae (one of the smallest known eukaryotes).
+
+**Information about the virus:**
+
+Genome size: 191,761 bp
+
+Genome Accession Number: FN386611.1
+
+SRA Project Accession Number: PRJNA1345089
+
+SRA Experiment Number: SRX30942516
+
+SRA Run: SRR35893209
 
 ## Write a Makefile that calls variants and creates a VCF file.
 Started with the `Makefile` from [Week 5](https://github.com/EXS5825/appbio-2026/tree/main/week05). Incorporated material from Biostar Handbook for variant calling. 
