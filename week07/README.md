@@ -112,7 +112,7 @@ SN	0	number of others:	0
 SN	0	number of multiallelic sites:	4
 SN	0	number of multiallelic SNP sites:	4
 ```
-Most of the variants are profiled as SNPs, with indels making up most of the rest. 
+The vast majority of the variants are profiled as SNPs, with a few indels making up the rest. 
 * 4,235 SNPs = 99.3% of variants
 * 29 indels = 0.7% of variants
 * 0 MNPs or others
