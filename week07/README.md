@@ -31,6 +31,31 @@ bcftools mpileup ${ANN} -O u -f ${FASTA} ${BAM} | \
 ```
 
 Refining: 
+* Found and fixed a bug with the `ANN` variable.
+
+
+**Summary of additions/changes (in my own words, so I may not be as precise as Claude):**
+* In "definitions":
+     * Added `VCF_DIR    := vcf` to "Directories"
+     * Added `variants: Call variants and produce an indexed VCF` to "Targets"
+     * Added a new section called "Variant Calling"
+```
+ # === VARIANT CALLING ===
+VCF        := $(VCF_DIR)/$(SAMPLE_NAME)_vs_$(GENOME_NAME).vcf.gz
+ANN        := -d 100 --annotate INFO/AD,FORMAT/DP,FORMAT/AD,FORMAT/ADF,FORMAT/ADR,FORMAT/SP
+CALL       := --ploidy 2 --annotate FORMAT/GQ
+```
+
+* In the code section:
+
+```
+xvariants: align
+	mkdir -p $(VCF_DIR)
+	bcftools mpileup $(ANN) -O u -f $(GENOME_FASTA) $(BAM) | \
+	         bcftools call $(CALL) -mv -O u | \
+	         bcftools norm -f $(GENOME_FASTA) -d all -O u | \
+	         bcftools sort --write-index -O z -o $(VCF)
+```
 
 ## Run a statistics report on the VCF file.
 How many variants were called?
