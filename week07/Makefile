@@ -24,6 +24,7 @@ FASTQ_2    := $(FASTQ_DIR)/$(SRR)_2.fastq
 VCF        := $(VCF_DIR)/$(SAMPLE_NAME)_vs_$(GENOME_NAME).vcf.gz
 ANN        := -d 100 --annotate INFO/AD,FORMAT/DP,FORMAT/AD,FORMAT/ADF,FORMAT/ADR,FORMAT/SP
 CALL       := --ploidy 2 --annotate FORMAT/GQ
+STATS      := $(VCF_DIR)/$(SAMPLE_NAME)_vs_$(GENOME_NAME).stats.txt
 # === BEHAVIOR ===
 .DELETE_ON_ERROR:
 # === USAGE TEXT ===
@@ -38,6 +39,7 @@ Targets:
   qc        Run FastQC on downloaded files
   report    Generate MultiQC report
   variants  Call variants and produce an indexed VCF
+  stats     Generate bcftools statistics report on the VCF
   clean     Remove all generated files
 endef
 export USAGE
@@ -72,6 +74,8 @@ variants: align
 	         bcftools call $(CALL) -mv -O u | \
 	         bcftools norm -f $(GENOME_FASTA) -d all -O u | \
 	         bcftools sort --write-index -O z -o $(VCF)
+stats: variants
+	bcftools stats $(VCF) > $(STATS)
 clean:
 	rm -rf $(FASTQ_DIR) $(QC_DIR) $(REPORT_DIR) $(GENOME_DIR) $(BAM_DIR) $(VCF_DIR)
-.PHONY: usage download genome index align flagstat qc report variants clean
+.PHONY: usage download genome index align flagstat qc report variants stats clean
