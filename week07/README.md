@@ -70,4 +70,17 @@ Are the calls supported by the alignments?
 Include a screenshot of the VCF file in IGV. 
 
 ## Reproducibility
-Include the commands needed to run the Makefile. 
+(Bioinfo environment activated)
+```
+# 1. Clone the repository
+git clone https://github.com/EXS5825/appbio-2026.git
+
+# 2. Navigate to the week07 folder
+cd appbio-2026/week07
+
+# 3. Run everything up to and including variant calling
+make variants
+
+# 4. Clean
+make clean
+```
