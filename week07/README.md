@@ -84,13 +84,42 @@ To run the statistics report:
 make stats
 ```
 
-How many variants were called?
+### How many variants were called?
+```
+Lines   total/split/joined/realigned/mismatch_removed/dup_removed/skipped: 4265/0/0/21/0/1/0
+```
+* 4265 total lines processed
+* 21 realigned
+* 1 duplicate removed
 
-What kinds of variants are present?
+= **4264 total variants called.**
 
-Which calls look like true variants, and which look like errors?
+### What kinds of variants are present?
+```
+grep "^SN" vcf/OtV1_WGS_vs_OtV-1_REF.stats.txt
+```
+This gives me the number of SNPs, indels, etc. 
 
-Are the calls supported by the alignments?
+Output: 
+```
+SN	0	number of samples:	1
+SN	0	number of records:	4264
+SN	0	number of no-ALTs:	0
+SN	0	number of SNPs:	4235
+SN	0	number of MNPs:	0
+SN	0	number of indels:	29
+SN	0	number of others:	0
+SN	0	number of multiallelic sites:	4
+SN	0	number of multiallelic SNP sites:	4
+```
+Most of the variants are profiled as SNPs, with indels making up most of the rest. 
+* 4,235 SNPs = 99.3% of variants
+* 29 indels = 0.7% of variants
+* 0 MNPs or others
+
+### Which calls look like true variants, and which look like errors?
+
+### Are the calls supported by the alignments?
 
 ## Visualize the VCF file in IGV.
 Include a screenshot of the VCF file in IGV. 
