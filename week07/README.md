@@ -126,8 +126,8 @@ A <--> G and C <--> T transitions are much more chemically likely than transvers
 
 Result:  
 ```
-TSTV  id  ts  tv  ts/tv  ts(1st ALT)  tv(1st ALT)  ts/tv(1st ALT)
-TSTV  0   3060  1179  2.60  3060  1175  2.60
+TSTV  id  ts    tv    ts/tv  ts(1st ALT)  tv(1st ALT)  ts/tv(1st ALT)
+TSTV  0   3060  1179  2.60   3060         1175         2.60
 ```
 The ts/tv ratio = 2.60, which is good. Supports that the majority of SNPs are true variants. 
 
