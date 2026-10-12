@@ -70,7 +70,7 @@ xvariants: align
 ```
 
 ## Run a statistics report on the VCF file.
-Add bcftools stats to Makefile as new target:
+Add `bcftools stats` to Makefile as new target:
 * in the variables section `STATS := $(VCF_DIR)/$(SAMPLE_NAME)_vs_$(GENOME_NAME).stats.txt`
 ```
 # new target
