@@ -175,7 +175,12 @@ QUAL  0   225.4    3083  2308  775  2
 ### Are the calls supported by the alignments?
 
 ## Visualize the VCF file in IGV.
-Include a screenshot of the VCF file in IGV. 
+Coverage looks consistent across the very zoomed-out genome (cyan):
+<img width="2294" height="518" alt="image" src="https://github.com/user-attachments/assets/bd32bcc1-ea69-419d-8553-a473b23cba7d" />
+
+### Are the calls supported by the alignments?
+Variants from the VCF (dark blue track at the top) are consistent with the variants seen in the alignment. 
+<img width="2276" height="1482" alt="image" src="https://github.com/user-attachments/assets/94bf8b33-4e27-421b-a299-b3bab425f38a" />
 
 ## Reproducibility
 (Bioinfo environment activated)
