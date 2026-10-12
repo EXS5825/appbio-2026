@@ -194,9 +194,29 @@ cd appbio-2026/week07
 # 3. Run everything up to and including variant calling
 make variants
 
-# 4. Optionally, run the statistics report. 
+--------- Optional for fun! ---------
+
+# 4. Run the statistics report
 make stats
 
-# 5. Clean
+# 5. Index the reference genome for IGV
+samtools faidx genome/OtV-1_REF.fasta
+
+# 6. Index the BAM file for IGV
+samtools index bam/SRR35893209_vs_OtV-1.bam
+
+# 7. Open IGV and load the following files:
+#    - Reference genome: Genomes → Load Genome from File
+#      genome/OtV-1_REF.fasta
+#    - Alignments: File → Load from File
+#      bam/SRR35893209_vs_OtV-1.bam
+#    - Variants: File → Load from File
+#      vcf/OtV1_WGS_vs_OtV-1_REF.vcf.gz
+#    Navigate to a region of interest, e.g.:
+#      FN386611:50000-51000
+
+------------------------------------
+
+# 8. Clean
 make clean
 ```
