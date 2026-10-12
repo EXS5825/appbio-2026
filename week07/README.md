@@ -118,6 +118,59 @@ The vast majority of the variants are profiled as SNPs, with a few indels making
 * 0 MNPs or others
 
 ### Which calls look like true variants, and which look like errors?
+```
+# Look at the ts/tv ratio
+grep "^TSTV" vcf/OtV1_WGS_vs_OtV-1_REF.stats.txt
+```
+A <--> G and C <--> T transitions are much more chemically likely than transversions (purine replaced by pyrimidine). The expected ration would be ~2, but if it's closer to 1 then many calls may be errors. 
+
+Result:  
+```
+TSTV  id  ts  tv  ts/tv  ts(1st ALT)  tv(1st ALT)  ts/tv(1st ALT)
+TSTV  0   3060  1179  2.60  3060  1175  2.60
+```
+The ts/tv ratio = 2.60, which is good. Supports that the majority of SNPs are true variants. 
+
+```
+# Check depth distribution
+grep "^DP" vcf/OtV1_WGS_vs_OtV-1_REF.stats.txt
+```
+As a result of subsampling reads (only 12,700 for ~10X coverage), I have a low-depth tail with some variants only being supported by 1-5 reads: 
+```
+DP  0  1   0  0.000000  83   1.946529
+DP  0  2   0  0.000000  65   1.524390
+DP  0  3   0  0.000000  40   0.938086
+DP  0  4   0  0.000000  64   1.500938
+DP  0  5   0  0.000000  48   1.125704
+```
+* Depth 1: 83 variants
+* Depth 2: 65 variants
+* Depth 3: 40 variants
+* Depth 4: 64 variants
+* Depth 5: 48 variants
+* Total: 300 variants below 5x depth
+
+The distribution rises and peaks around depths 13-18:
+```
+DP  0  13  0  0.000000  227  5.323640
+DP  0  14  0  0.000000  278  6.519700
+DP  0  15  0  0.000000  247  5.792683
+DP  0  16  0  0.000000  240  5.628518
+DP  0  17  0  0.000000  274  6.425891
+DP  0  18  0  0.000000  278  6.519700
+```
+This low-depth tail should be reduced if I was using the full dataset, so for right now it's fine. 
+
+```
+# Check quality score distribution
+grep "^QUAL" vcf/OtV1_WGS_vs_OtV-1_REF.stats.txt
+```
+Output of interest:
+```
+QUAL  id  quality  snps  ts    tv   indels
+QUAL  0   225.4    3083  2308  775  2
+```
+3083 of SNPs (nearly 72% of calls) are at the maximum QUAL score of 225.4. Gives confidence in real biological variation. 
 
 ### Are the calls supported by the alignments?
 
