@@ -23,7 +23,7 @@ This genome appears to be obscure, as only one group (Lomonosov Moscow State Uni
 Both of the libraries were sequenced using a paired-end short-read method (Illumina HiSeq 2000). 
 
 ### 3) What do you find interesting or surprising?
-The coverage is very high for this genome: 
+The coverage is very high for this genome. 
 
 Coverage = Total bases / Genome Size
 
@@ -31,7 +31,7 @@ Coverage = 31 Gb / 63.6 Mb
 
 Coverage = 487x
 
-At first I was surprised by the high number, but later as I thought about it the coverage made more sense. This is the smallest known angiosperm genome, and Illumina gives deep coverage. This makes me feel better about their ability to resolve repetitive regions and produce a good reference genome. 
+At first I was surprised by the high number, but later as I thought about it the coverage made more sense. This is the smallest known angiosperm genome, and Illumina gives deep coverage. 
 
 ## Part 2: Download FASTQ files for an experiment
 ### Add commands to your Makefile so that it can download a subset of reads from the SRA based on an accession number. 
