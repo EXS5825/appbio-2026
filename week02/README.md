@@ -8,6 +8,8 @@ Chromosome count: Unknown. Hypothesized to be somewhere between 26 and 104.
 
 Accession number: GCA_000441915.1
 
+Link to genome assembly: https://www.ncbi.nlm.nih.gov/datasets/genome/GCA_000441915.1/
+
 ## How the Makefile should be used:
 Requirements: `make`, `unzip`, and the [NCBI `datasets` CLI](https://www.ncbi.nlm.nih.gov/datasets/docs/v2/download-and-install/) (e.g. installed in the `bioinfo` environment).
 
