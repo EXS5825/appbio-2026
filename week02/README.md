@@ -4,7 +4,7 @@
 
 *Genlisea aurea* is a weird plant that has no roots, instead forming leaves (with no chlorophyll) under the soil and trapping and digesting protozoans with them. This rare carnivorous plant also has one of the smallest genomes in the entire plant kingdom. For comparison, the classic plant model *Arabidopsis thaliana* has a genome size of ~135Mb ... *Genlisea aurea*'s genome comes it at only 63.36 Mb (over 70 times smaller and comparable to bacterial genome sizes)! 
 
-Chromosome count: 2n = 104
+Chromosome count: Unknown. Hypothesized to be somewhere between 26 and 104. 
 
 Accession number: GCA_000441915.1
 
@@ -47,9 +47,11 @@ awk '$3=="gene"' ./GCA_000441915.1_genomic.gff | wc -l
 There are 17685 gene annotations in the GFF file. 
 
 ## How complete is this genomic build in your opinion?
-This genomic build is a scaffold-level, which is moderately complete at the sequence level but lacks chromosome-level structure. 
+This genomic build is a scaffold-level, which is moderately complete at the sequence level but lacks chromosome-level structure. However, a closer look at the scaffold and contig counts reveals that very few of the contigs were actually assembled into scaffolds (Contig # = 10,762; Scaffold # = 10,684): only 78, or 0.7%! So this is really more of a contig-level assembly. 
 
-I could run a BUSCO to look at sequence completeness, but considering that this carnivorous plant has such a small genome (likely with lots of areas deleted) I don't know that it would be an accurate way to assess the completeness of this build. 
+In addition, the size of the scaffolds and contigs are the same (Scaffold N50	= 5.8 kb, Contig N50	5.8 kb). So the scaffolds aren't more complete than the contigs! This genome doesn't seem to be very complete (mostly just contig pieces). Even 300x coverage (rather excessive, but this is a small genome) didn't seem to help. 
+
+<img width="696" height="886" alt="image" src="https://github.com/user-attachments/assets/7400b6e4-81cd-4efa-80f8-31afec8f56cb" />
 
 ## How tightly packed are the genes in this genome? 
 Gene density = number of genes ÷ total genome size (Mb)
