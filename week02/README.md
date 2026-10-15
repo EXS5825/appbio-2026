@@ -51,7 +51,7 @@ This genomic build is a scaffold-level, which is moderately complete at the sequ
 
 In addition, the size of the scaffolds and contigs are the same (Scaffold N50	= 5.8 kb, Contig N50	5.8 kb). So the scaffolds aren't more complete than the contigs! This genome doesn't seem to be very complete (mostly just contig pieces). Even 300x coverage (rather excessive, but this is a small genome) didn't seem to help. 
 
-<img width="696" height="886" alt="image" src="https://github.com/user-attachments/assets/7400b6e4-81cd-4efa-80f8-31afec8f56cb" />
+<img src="https://github.com/user-attachments/assets/7400b6e4-81cd-4efa-80f8-31afec8f56cb" width="350" alt="image" />
 
 ## How tightly packed are the genes in this genome? 
 Gene density = number of genes ÷ total genome size (Mb)
