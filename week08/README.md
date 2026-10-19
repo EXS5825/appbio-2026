@@ -52,7 +52,7 @@ $(FASTQ_DIR)/%_1.fastq $(FASTQ_DIR)/%_2.fastq:
 ```
 Old version was a hardcoded rule. New version is a pattern rule that fires once per SRR accession automatically, rather than once for a single hardcoded $(SRR)
 
-**Change `align' rule to align any SRR and tag it with the correct read group**
+**Change `align` rule to align any SRR and tag it with the correct read group**
 ```
 $(BAM_DIR)/%_vs_$(GENOME_NAME).bam: \
     $(FASTQ_DIR)/%_1.fastq $(FASTQ_DIR)/%_2.fastq \
