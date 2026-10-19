@@ -1,5 +1,5 @@
 # === SAMPLES ===
-# Add or remove SRR:SAMPLE pairs here — everything else is automatic
+# Add or remove SRR:SAMPLE pairs here 
 SAMPLES := SRR35893209:OtV09-573 \
            SRR35893210:OtV09-570 \
            SRR35893211:OtV09-565 \
