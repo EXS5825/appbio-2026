@@ -1,7 +1,9 @@
 # Homework Assignment 8: Interpret a multisample VCF file
-Starting with the previous `Makefile` in [Week 7](https://github.com/EXS5825/appbio-2026/tree/main/week07) that created a VCF file of one run from whole-genome sequencing of *Ostreococcus tauri* virus (PRJNA1345089). 
+Starting with the previous `Makefile` in [Week 7](https://github.com/EXS5825/appbio-2026/tree/main/week07) that created a VCF file.
+* This was made from one run from whole-genome sequencing of *Ostreococcus tauri* virus 
+* Project: PRJNA1345089
 
-See the bottom of the assignment for reproducibility. 
+See the bottom of the assignment for quick reproducibility steps. 
 
 ## Sample runs
 I kept my original SRR run (SRR35893209) and added three new ones: SRR35893210, SRR35893211, & SRR35893212. Fetched their sample names by running: 
@@ -71,7 +73,65 @@ Original was hardcoded to a single `$(BAM)`. The new `$(call RG,$*)` injects the
 bcftools mpileup $(ANN) -O u -f $(GENOME_FASTA) $(BAMS) | \
          bcftools call $(CALL) -mv -O u | \
 ```
-`$(BAMS)` expands to all four BAMs, each labelled with distinct SM read group tag. Then `bcftools` produces a single multi-sample VCF with one column per sample. 
+`$(BAMS)` expands to all four BAMs, each labelled with distinct SM read group tag. Then `bcftools` produces a single multi-sample VCF with one column per sample.
+
+## Visualizing in IGV
+This area has some interesting variants -- lots of differences between the different samples and reference at position 521!
+<img width="2294" height="1508" alt="image" src="https://github.com/user-attachments/assets/f6bc3c11-6b04-43be-b8d1-fe398c2ee268" />
+
+Found a few variants in the gene OTV1_001: 
+<img width="2300" height="1514" alt="image" src="https://github.com/user-attachments/assets/ec7ea49f-0b7b-49dd-8864-8771ed99d320" />
+Strangely enough, these variants all seem to fall in the middle position (not the degenerate end) of the codon. 
+
+Position 752:  
+* Reference seq: CGG (arginine)
+* Alternate seq: CTG (leucine)
+* Amino acid change: non-synonymous
+
+Position 761: 
+* Reference seq: TCG (serine)
+* Alternate seq: TGG (arginine)
+* Amino acid change: non-synonymous
+
+Position 779: 
+* Reference seq: CGT (arginine)
+* Alternate seq: CAT ~~(meow)~~ (histidine)
+* Amino acid change: non-synonymous
+
+It seems strange to me that all of these changes would be non-synonymous, but perhaps viral genomes do change drastically like that. 
+
+Checked another gene: OTV1_115
+<img width="2312" height="1582" alt="image" src="https://github.com/user-attachments/assets/23fa5a23-3102-4afb-83ed-9e2088a5ffdd" />
+This one has more variations in the third position. 
+Position 97,878: 
+* Reference seq: TCG (serine)
+* Alternate seq: TCA (serine)
+* Amino acid change: synonymous
+
+Position 97,902: 
+* Reference seq: GCA (alanine)
+* Alternate seq: GCG (alanine)
+* Amino acid change: synonymous
+
+Position 97,914: 
+* Reference seq: TTG (leucine)
+* Alternate seq: TTA (leucine)
+* Amino acid change: synonymous
+
+Perhaps the other area wasn't as important of a gene as this one, so it wasn't as conserved. 
+
+## Software output for variant
+A synonymous variant from above (position 97,878): 
+```
+snpEff ann -c snpeff/snpEff.config -nodownload -noStats OtV-1     -fi snpeff/region.bed     appbio-2026/week08/vcf/joint_vs_OtV-1_REF.vcf.gz
+```
+
+This had a large output, but here's the highlights:
+| #CHROM     | POS   | REF | ALT | QUAL    | INFO               |
+|------------|-------|-----|-----|---------|--------------------|
+| FN386611.1 | 97878 | G   | A   | 994.576 | synonymous_variant |
+
+Consistent with what was visually ascertained above from IGV. 
 
 # Reproducibility: 
 (Bioinfo environment activated)
