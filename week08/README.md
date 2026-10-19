@@ -74,6 +74,7 @@ bcftools mpileup $(ANN) -O u -f $(GENOME_FASTA) $(BAMS) | \
 `$(BAMS)` expands to all four BAMs, each labelled with distinct SM read group tag. Then `bcftools` produces a single multi-sample VCF with one column per sample. 
 
 # Reproducibility: 
+(Bioinfo environment activated)
 ```
 # 1. Clone the repository
 git clone https://github.com/EXS5825/appbio-2026.git
