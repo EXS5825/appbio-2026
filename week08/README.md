@@ -16,7 +16,7 @@ SRR35893209,OtV09-573
 ```
 
 ## Updating definitions and targets
-1) Added a new "Samples" group at the top of my Makefile: 
+**1) Added a new "Samples" group at the top of my Makefile:** 
 ```
 # === SAMPLES ===
 # Add or remove SRR:SAMPLE pairs here 
@@ -27,7 +27,7 @@ SAMPLES := SRR35893209:OtV09-573 \
 ```
 This combines the `SRR` and `Sample Name` groups from before. Makefile still feels like it's getting long, but consolidating here and there helps. 
 
-2) Parse out the SRR accessions and derive all file paths (expands the SAMPLES list into a flat list of just the SRR accessions): 
+**2) Parse out the SRR accessions and derive all file paths (expands the SAMPLES list into a flat list of just the SRR accessions):** 
 ```
 SRR_LIST := $(foreach s,$(SAMPLES),$(word 1,$(subst :, ,$(s))))
 
@@ -37,14 +37,15 @@ BAMS     := $(foreach srr,$(SRR_LIST),$(BAM_DIR)/$(srr)_vs_$(GENOME_NAME).bam)
 ```
 Needed because we don't have a single sample anymore. 
 
-3) Match sample name to SRR accession number and build the read group string
+**3) Match sample name to SRR accession number and build the read group string**
 ```
 srr2sample = $(word 2,$(subst :, ,$(filter $(1):%,$(SAMPLES))))
 RG         = @RG\tID:$(1)\tSM:$(call srr2sample,$(1))\tLB:$(1)$(RG_LB_SUFFIX)\tPL:$(RG_PL)\tPU:$(1)
 ```
 `RG` substitutes the SRR accession and sample name into the right positions in that tab-separated tag format that BAM files expect. 
 
-4) Change `fastq-dump` command to accomodate multiple SRR accessions
+## Updating Makefile commands
+**4) Change `fastq-dump` command to accomodate multiple SRR accessions**
 ```
 $(FASTQ_DIR)/%_1.fastq $(FASTQ_DIR)/%_2.fastq:
 	fastq-dump -X $(N) --outdir $(FASTQ_DIR) --split-files $*
