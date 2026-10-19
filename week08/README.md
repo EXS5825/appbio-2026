@@ -62,7 +62,7 @@ $(BAM_DIR)/%_vs_$(GENOME_NAME).bam: \
 	    ...
 	    samtools sort --write-index -o $@
 ```
-Original was hardcoded to a single `$(BAM)`. `$(call RG,$*)` injects the correct `SM` tag (sample name field) for each sample so the variant caller can tell them apart. 
+Original was hardcoded to a single `$(BAM)`. The new `$(call RG,$*)` injects the correct `SM` tag (sample name field) for each sample so the variant caller can tell them apart. 
 
 **Simultaneous calling of variants from all BAMs**
 ```
