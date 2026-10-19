@@ -1,6 +1,8 @@
 # Homework Assignment 8: Interpret a multisample VCF file
 Starting with the previous `Makefile` in [Week 7](https://github.com/EXS5825/appbio-2026/tree/main/week07) that created a VCF file of one run from whole-genome sequencing of *Ostreococcus tauri* virus (PRJNA1345089). 
 
+See the bottom of the assignment for reproducibility. 
+
 ## Sample runs
 I kept my original SRR run (SRR35893209) and added three new ones: SRR35893210, SRR35893211, & SRR35893212. Fetched their sample names by running: 
 ```
@@ -15,7 +17,7 @@ SRR35893210,OtV09-570
 SRR35893209,OtV09-573
 ```
 
-## Updating definitions and targets
+## Updating definitions and targets for making a merged multisample VCF
 **Added a new "Samples" group at the top of my Makefile:** 
 ```
 # === SAMPLES ===
@@ -44,7 +46,7 @@ RG         = @RG\tID:$(1)\tSM:$(call srr2sample,$(1))\tLB:$(1)$(RG_LB_SUFFIX)\tP
 ```
 `RG` substitutes the SRR accession and sample name into the right positions in that tab-separated tag format that BAM files expect. 
 
-## Updating Makefile commands
+## Updating Makefile commands for making a merged multisample VCF
 **Change `fastq-dump` command to accomodate multiple SRR accessions**
 ```
 $(FASTQ_DIR)/%_1.fastq $(FASTQ_DIR)/%_2.fastq:
@@ -71,5 +73,19 @@ bcftools mpileup $(ANN) -O u -f $(GENOME_FASTA) $(BAMS) | \
 ```
 `$(BAMS)` expands to all four BAMs, each labelled with distinct SM read group tag. Then `bcftools` produces a single multi-sample VCF with one column per sample. 
 
+# Reproducibility: 
+```
+# 1. Clone the repository
+git clone https://github.com/EXS5825/appbio-2026.git
+
+# 2. Navigate to the week08 folder
+cd appbio-2026/week08
+
+# 3. Run the pipeline
+make variants
+
+# 4. Clean
+make clean
+```
 
 Also found an article with a really cool picture of these massive viruses inside their tiny hosts (these algae cells are smaller than some bacteria!): https://enviromicro-journals.onlinelibrary.wiley.com/doi/full/10.1111/j.1462-2920.2009.01991.x. See Figure 1B. 
