@@ -98,7 +98,7 @@ Position 779:
 * Alternate seq: CAT ~~(meow)~~ (histidine)
 * Amino acid change: non-synonymous
 
-It seems strange to me that all of these changes would be non-synonymous, but perhaps viral genomes do change drastically like that. 
+It seems strange to me that all of these changes would be in the middle of the codon, non-synonymous, but perhaps viral genomes do change drastically like that. 
 
 Checked another gene: OTV1_115
 <img width="2312" height="1582" alt="image" src="https://github.com/user-attachments/assets/23fa5a23-3102-4afb-83ed-9e2088a5ffdd" />
