@@ -34,10 +34,28 @@ curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=sra&id=SRR
 ## Updating `Makefile`
 * Fixed a bug in the `download` section: the `download` rule produced two output files (paired-end reads), and originally `fastq-dump` would have tried to write twice (one for each of the output files) for the same sample if I had tried to run this process in parallel, corrupting the output. 
 
-Simple fix: Added `&:` to the end of this command, which tells Make “these two files come from one recipe, run it once.”: 
-```
-$(FASTQ_DIR)/%_1.fastq $(FASTQ_DIR)/%_2.fastq &:
-```
+    Simple fix: Added `&:` to the end of this command, which tells Make “these two files come from one recipe, run it once.”: 
+    ```
+    $(FASTQ_DIR)/%_1.fastq $(FASTQ_DIR)/%_2.fastq &:
+    ```
+
+* Also made it easier to run just one sample from the Makefile if desired. Added this to the `Makefile`:
+    ```
+    sample: $(BAM_DIR)/$(call sample2srr,$(SAMPLE))_vs_$(GENOME_NAME).bam
+    ```
+    Which allows me to type: 
+    ```
+    make sample SAMPLE=OtV09-570
+    ```
+    Instead of: 
+    ```
+    make bam/SRR35893210_vs_OtV-1_REF.bam
+    ```
+* My `Makefile` already had a way to run the samples in parallel:
+    ```
+    make -j
+    ```
+    The number of parallel jobs is specified after -j, e.g. `make -j5`. 
 
 ## Reproducibility 
 ```
@@ -47,9 +65,12 @@ git clone https://github.com/EXS5825/appbio-2026.git
 # 2. Navigate to the week09 folder
 cd appbio-2026/week09
 
-# 3. Run everything up to and including variant calling
+# 3. Test one sample first
+make sample SAMPLE=OtV09-570
+
+# 4. Run everything up to and including variant calling
 make variants
 
-# 4. Clean
+# 5. Clean
 make clean
 ```
