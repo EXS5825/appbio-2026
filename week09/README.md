@@ -30,7 +30,6 @@ Double-checked the new sample names:
 ```
 curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=sra&id=SRR35893213,SRR35893214,SRR35893215,SRR35893216,SRR35893217,SRR35893218&rettype=runinfo&retmode=csv" | cut -d',' -f1,12
 ```
-
 ## Updating `Makefile` from Week 7
 There were a few improvements to make first: 
 * genome and index now depend on `$(GENOME_FASTA)` directly, so `Make` skips the download and indexing if the files already exist.
@@ -38,6 +37,14 @@ There were a few improvements to make first:
 * `set -o pipefail` added to `align` so a silent `bwa mem` failure isn’t swallowed by the pipe.
 * 8 usable cores (leaving 2 for the OS). Change from two jobs, 4 threads to `-j 4, THREADS=2` = 8 threads used. 
 
+## Making the design file
+```
+# Generate a design file from the SRA BioProject
+bio search -H --csv PRJNA1345089 > design.csv
+
+
+
+```
 
 ## Reproducibility 
 ```
