@@ -1,24 +1,5 @@
-# === SAMPLES ===
-# Add or remove SRR:SAMPLE pairs here 
-SAMPLES := SRR35893209:OtV09-573 \
-           SRR35893210:OtV09-570 \
-           SRR35893211:OtV09-565 \
-           SRR35893212:OtV09-559 \
-           SRR35893213:OtV09-557 \
-           SRR35893214:OtV09-556 \
-           SRR35893215:OtV06-4 \
-           SRR35893216:OtV06-12 \
-           SRR35893217:OtV19-R \
-           SRR35893218:OtV-Sylt2-5
-
-# Parse into parallel lists
-SRR_LIST    := $(foreach s,$(SAMPLES),$(word 1,$(subst :, ,$(s))))
-SAMPLE_LIST := $(foreach s,$(SAMPLES),$(word 2,$(subst :, ,$(s))))
-
-# Lookup helpers: $(call srr2sample,SRR) and $(call sample2srr,SAMPLE)
-srr2sample  = $(word 2,$(subst :, ,$(filter $(1):%,$(SAMPLES))))
-sample2srr  = $(word 1,$(subst :, ,$(filter %:$(1),$(SAMPLES))))
-
+# === SRR ===
+SRR        := SRR35893209
 # === DIRECTORIES ===
 FASTQ_DIR  := fastq
 QC_DIR     := qc
@@ -26,128 +7,77 @@ REPORT_DIR := report
 GENOME_DIR := genome
 BAM_DIR    := bam
 VCF_DIR    := vcf
-
 # === SETTINGS ===
 THREADS    := 4
 N          := 12700
-
 # === REFERENCE GENOME ===
 GENOME_URL   := https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=FN386611&rettype=fasta&retmode=text
 GENOME_NAME  := OtV-1_REF
-GENOME_FASTA := $(GENOME_DIR)/$(GENOME_NAME).fasta
-
-# === DERIVED FILE LISTS ===
-FASTQ_1S := $(foreach srr,$(SRR_LIST),$(FASTQ_DIR)/$(srr)_1.fastq)
-FASTQ_2S := $(foreach srr,$(SRR_LIST),$(FASTQ_DIR)/$(srr)_2.fastq)
-BAMS     := $(foreach srr,$(SRR_LIST),$(BAM_DIR)/$(srr)_vs_$(GENOME_NAME).bam)
-
-# === MULTI-SAMPLE VCF ===
-JOINT_VCF   := $(VCF_DIR)/joint_vs_$(GENOME_NAME).vcf.gz
-ANN         := -d 100 --annotate INFO/AD,FORMAT/DP,FORMAT/AD,FORMAT/ADF,FORMAT/ADR,FORMAT/SP
-CALL        := --ploidy 2 --annotate FORMAT/GQ
-JOINT_STATS := $(VCF_DIR)/joint_vs_$(GENOME_NAME).stats.txt
-
+GENOME_FASTA := $(GENOME_DIR)/OtV-1_REF.fasta
+# === SAMPLE ===
+SAMPLE_NAME  := OtV1_WGS
+BAM          := $(BAM_DIR)/SRR35893209_vs_OtV-1.bam
+# === READS ===
+FASTQ_1    := $(FASTQ_DIR)/$(SRR)_1.fastq
+FASTQ_2    := $(FASTQ_DIR)/$(SRR)_2.fastq
+# === VARIANT CALLING ===
+VCF        := $(VCF_DIR)/$(SAMPLE_NAME)_vs_$(GENOME_NAME).vcf.gz
+ANN        := -d 100 --annotate INFO/AD,FORMAT/DP,FORMAT/AD,FORMAT/ADF,FORMAT/ADR,FORMAT/SP
+CALL       := --ploidy 2 --annotate FORMAT/GQ
+STATS      := $(VCF_DIR)/$(SAMPLE_NAME)_vs_$(GENOME_NAME).stats.txt
 # === BEHAVIOR ===
 .DELETE_ON_ERROR:
-
 # === USAGE TEXT ===
 define USAGE
 Usage: make <target>
-
-  Samples defined: $(SRR_LIST)
-
 Targets:
-  download  Fetch all FASTQ files from SRA
+  download  Fetch FASTQ files from SRA
   genome    Fetch the reference genome FASTA
   index     Index the reference genome
-  align     Align all samples to the reference genome
-  flagstat  Print flagstat for all BAMs
-  qc        Run FastQC on all FASTQ files
+  align     Align reads to the reference genome
+  flagstat  Generate a summary of the BAM file
+  qc        Run FastQC on downloaded files
   report    Generate MultiQC report
-  variants  Call variants jointly and produce an indexed VCF
-  stats     Generate bcftools stats on the joint VCF
-  sample    Align a single sample: make sample SAMPLE=OtV09-573
+  variants  Call variants and produce an indexed VCF
+  stats     Generate bcftools statistics report on the VCF
   clean     Remove all generated files
 endef
 export USAGE
-
 # --- all definitions above the line, all code below the line ---
-
 usage:
 	@echo "$$USAGE"
-
-# === DOWNLOAD ===
-$(FASTQ_DIR)/%_1.fastq $(FASTQ_DIR)/%_2.fastq &:
+download:
 	mkdir -p $(FASTQ_DIR)
-	fastq-dump -X $(N) --outdir $(FASTQ_DIR) --split-files $*
-
-download: $(FASTQ_1S) $(FASTQ_2S)
-
-# === GENOME ===
+	fastq-dump -X $(N) --outdir $(FASTQ_DIR) --split-files $(SRR)
 $(GENOME_FASTA):
 	mkdir -p $(GENOME_DIR)
-	curl -o $@ "$(GENOME_URL)"
-
+	curl -o $(GENOME_FASTA) "$(GENOME_URL)"
 genome: $(GENOME_FASTA)
-
-# === INDEX ===
-$(GENOME_FASTA).bwt: $(GENOME_FASTA)
+index: $(GENOME_FASTA)
 	bwa index $(GENOME_FASTA)
-
-index: $(GENOME_FASTA).bwt
-
-# === ALIGN ===
-$(BAM_DIR)/%_vs_$(GENOME_NAME).bam: \
-    $(FASTQ_DIR)/%_1.fastq $(FASTQ_DIR)/%_2.fastq \
-    $(GENOME_FASTA).bwt
+align: download index
 	mkdir -p $(BAM_DIR)
-	$(eval SM := $(call srr2sample,$*))
-	bwa mem \
-	    -R "@RG\tID:$*\tSM:$(SM)\tLB:$*_lib\tPL:ILLUMINA\tPU:$*" \
-	    -t $(THREADS) \
-	    $(GENOME_FASTA) $< $(word 2,$^) | \
-	    samtools sort --write-index -o $@
-
-align: $(BAMS)
-
-# === FLAGSTAT ===
-flagstat: $(BAMS)
-	@for bam in $^; do \
-	    echo "=== $$bam ==="; \
-	    samtools flagstat $$bam; \
-	done
-
-# === QC ===
-qc: $(FASTQ_1S) $(FASTQ_2S)
+	set -o pipefail; \
+	bwa mem $(GENOME_FASTA) $(FASTQ_1) $(FASTQ_2) | \
+	        samtools sort -o $(BAM) && samtools index $(BAM)
+flagstat: align
+	samtools flagstat $(BAM)
+qc: download
 	mkdir -p $(QC_DIR)
-	fastqc $^ --outdir $(QC_DIR) --threads $(THREADS)
-
-# === REPORT ===
+	fastqc $(FASTQ_DIR)/$(SRR)*.fastq \
+	       --outdir $(QC_DIR) \
+	       --threads $(THREADS)
 report: qc
 	mkdir -p $(REPORT_DIR)
 	multiqc $(QC_DIR) --outdir $(REPORT_DIR)
-
-# === JOINT VARIANT CALLING ===
-$(JOINT_VCF): $(BAMS) $(GENOME_FASTA)
+variants: align
 	mkdir -p $(VCF_DIR)
-	bcftools mpileup $(ANN) -O u -f $(GENOME_FASTA) $(BAMS) | \
+	bcftools mpileup $(ANN) -O u -f $(GENOME_FASTA) $(BAM) | \
 	         bcftools call $(CALL) -mv -O u | \
 	         bcftools norm -f $(GENOME_FASTA) -d all -O u | \
-	         bcftools sort --write-index -O z -o $@
-
-variants: $(JOINT_VCF)
-
-# === STATS ===
-$(JOINT_STATS): $(JOINT_VCF)
-	bcftools stats $< > $@
-
-stats: $(JOINT_STATS)
-
-# === SINGLE SAMPLE ===
-sample: $(BAM_DIR)/$(call sample2srr,$(SAMPLE))_vs_$(GENOME_NAME).bam
-
-# === CLEAN ===
+	         bcftools sort --write-index -O z -o $(VCF)
+stats: variants
+	bcftools stats $(VCF) > $(STATS)
 clean:
 	rm -rf $(FASTQ_DIR) $(QC_DIR) $(REPORT_DIR) $(GENOME_DIR) $(BAM_DIR) $(VCF_DIR)
-
-.PHONY: usage download genome index align flagstat qc report variants stats sample clean
+.PHONY: usage download genome index align flagstat qc report variants stats clean
