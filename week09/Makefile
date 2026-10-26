@@ -16,7 +16,7 @@ GENOME_NAME  := OtV-1_REF
 GENOME_FASTA := $(GENOME_DIR)/OtV-1_REF.fasta
 # === SAMPLE ===
 SAMPLE_NAME  := OtV1_WGS
-BAM          := $(BAM_DIR)/SRR35893209_vs_OtV-1.bam
+BAM          := $(BAM_DIR)/$(SRR)_vs_OtV-1.bam
 # === READS ===
 FASTQ_1    := $(FASTQ_DIR)/$(SRR)_1.fastq
 FASTQ_2    := $(FASTQ_DIR)/$(SRR)_2.fastq
