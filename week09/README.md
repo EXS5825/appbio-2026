@@ -42,9 +42,17 @@ There were a few improvements to make first:
 # Generate a design file from the SRA BioProject
 bio search -H --csv PRJNA1345089 > design.csv
 
+# Sort the table by the run accession numbers 
+xan sort -s run_accession design.csv | xan view
+
+# Run the first 10 samples in parallel (header + 10 data rows)
 
 
 ```
+Small issues fixed: 
+* head -10 includes the header row — with --header :, GNU parallel reads the first line as the header. But piping through head -10 first means you get the header + 9 data rows, not 10. So I used head -11 for 10 samples.
+
+
 
 ## Reproducibility 
 ```
