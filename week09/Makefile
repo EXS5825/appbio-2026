@@ -14,6 +14,7 @@ N          := 12700
 GENOME_URL   := https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=FN386611&rettype=fasta&retmode=text
 GENOME_NAME  := OtV-1_REF
 GENOME_FASTA := $(GENOME_DIR)/OtV-1_REF.fasta
+GENOME_INDEX := $(GENOME_FASTA).bwt
 # === SAMPLE ===
 SAMPLE_NAME  := OtV1_WGS
 BAM          := $(BAM_DIR)/SRR35893209_vs_OtV-1.bam
@@ -53,9 +54,10 @@ $(GENOME_FASTA):
 	mkdir -p $(GENOME_DIR)
 	curl -o $(GENOME_FASTA) "$(GENOME_URL)"
 genome: $(GENOME_FASTA)
-index: $(GENOME_FASTA)
+index: $(GENOME_INDEX)
+$(GENOME_INDEX): $(GENOME_FASTA)
 	bwa index $(GENOME_FASTA)
-align: download index
+align: download $(GENOME_INDEX)
 	mkdir -p $(BAM_DIR)
 	set -o pipefail; \
 	bwa mem $(GENOME_FASTA) $(FASTQ_1) $(FASTQ_2) | \
