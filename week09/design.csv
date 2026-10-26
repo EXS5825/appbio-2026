@@ -1,1 +1,13 @@
+# Generate design file from SRA BioProject
+bio search -H --csv PRJNA1345089 > design.csv
 
+# Build genome and index once before parallelizing
+make genome index
+
+# Run the first 10 samples in parallel (header + 10 data rows)
+cat design.csv | head -11 | parallel --colsep , --header : --eta -j 4 \
+    make \
+    SRR={run_accession} \
+    SAMPLE_NAME={sample_alias} \
+    N=12700 \
+    variants
