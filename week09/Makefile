@@ -10,6 +10,9 @@ VCF_DIR    := vcf
 # === SETTINGS ===
 THREADS    := 4
 N          := 12700
+# === DESIGN ===
+DESIGN   := design.csv
+PARALLEL := parallel --colsep , --header : --eta -j 4
 # === REFERENCE GENOME ===
 GENOME_URL   := https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=FN386611&rettype=fasta&retmode=text
 GENOME_NAME  := OtV-1_REF
@@ -32,6 +35,7 @@ STATS      := $(VCF_DIR)/$(SAMPLE_NAME)_vs_$(GENOME_NAME).stats.txt
 define USAGE
 Usage: make <target>
 Targets:
+  batch     Run the workflow on all samples in parallel
   download  Fetch FASTQ files from SRA
   genome    Fetch the reference genome FASTA
   index     Index the reference genome
@@ -47,6 +51,13 @@ export USAGE
 # --- all definitions above the line, all code below the line ---
 usage:
 	@echo "$$USAGE"
+batch: genome index
+	cat $(DESIGN) | head -11 | $(PARALLEL) \
+	    make \
+	    SRR={run_accession} \
+	    SAMPLE_NAME={sample_alias} \
+	    N=$(N) \
+	    variants
 download:
 	mkdir -p $(FASTQ_DIR)
 	fastq-dump -X $(N) --outdir $(FASTQ_DIR) --split-files $(SRR)
@@ -82,4 +93,4 @@ stats: variants
 	bcftools stats $(VCF) > $(STATS)
 clean:
 	rm -rf $(FASTQ_DIR) $(QC_DIR) $(REPORT_DIR) $(GENOME_DIR) $(BAM_DIR) $(VCF_DIR)
-.PHONY: usage download genome align flagstat qc report variants stats clean
+.PHONY: usage batch download genome align flagstat qc report variants stats clean
