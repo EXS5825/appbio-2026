@@ -6,7 +6,7 @@ I am starting with the workflow that created a VCF file from [Week 7](https://gi
 * Project: PRJNA1345089
 * Sequencing type: Whole-genome sequencing
 
-Previously, I had used these SRR runs:
+Previously, I had used these SRR runs in [Week 8]((https://github.com/EXS5825/appbio-2026/tree/main/week08):
 | SRR Number | Sample Name | Collection Area |
 |------------|-------------|-----------------|
 | SRR35893209 | OtV09-573 | La Palme lagoon (Mediterranean Sea near France) |
