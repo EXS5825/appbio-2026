@@ -24,7 +24,7 @@ New SRR runs to add to get up to ten total samples:
 | SRR35893217 | OtV19-R | South Pacific Ocean near Chile |
 | SRR35893218 | OtV-Sylt2-5 | North Sea near Germany |
 
-I just noticed the different collection areas this time around and thought it was interesting! 
+I noticed the different collection areas this time around and thought it was interesting! 
 
 Double-checked the new sample names: 
 ```
