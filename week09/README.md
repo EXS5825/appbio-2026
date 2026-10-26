@@ -38,21 +38,8 @@ There were a few improvements to make first:
 * 8 usable cores (leaving 2 for the OS). Change from two jobs, 4 threads to `-j 4, THREADS=2` = 8 threads used. 
 
 ## Making the design file
-```
-# Generate a design file from the SRA BioProject
-bio search -H --csv PRJNA1345089 > design.csv
-
-# Sort the table by the run accession numbers 
-xan sort -s run_accession design.csv | xan view
-
-# Run the first 10 samples in parallel (header + 10 data rows)
-
-
-```
-Small issues fixed: 
+Issues fixed: 
 * head -10 includes the header row — with --header :, GNU parallel reads the first line as the header. But piping through head -10 first means you get the header + 9 data rows, not 10. So I used head -11 for 10 samples.
-
-
 
 ## Reproducibility 
 ```
