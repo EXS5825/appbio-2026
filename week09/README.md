@@ -1,5 +1,5 @@
 # Homework Assignment 9: Create an automated workflow
-I am starting with the workflow that created a VCF file from [Week 7](https://github.com/EXS5825/appbio-2026/tree/main/week07) and [Week 8](https://github.com/EXS5825/appbio-2026/tree/main/week08). The pipeline from Week 8 was already fully automated, but now I will add more samples and update it to run in parallel. 
+I am starting with the workflow that created a VCF file from [Week 7](https://github.com/EXS5825/appbio-2026/tree/main/week07) and [Week 8](https://github.com/EXS5825/appbio-2026/tree/main/week08). The pipeline from Week 8 was already fully automated for multiple samples, but now I will add more samples and update it to run in parallel. 
 
 ## Preliminary information
 * Organism: *Ostreococcus tauri* virus
@@ -29,4 +29,23 @@ I noticed the different collection areas this time around and thought it was int
 Double-checked the new sample names: 
 ```
 curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=sra&id=SRR35893213,SRR35893214,SRR35893215,SRR35893216,SRR35893217,SRR35893218&rettype=runinfo&retmode=csv" | cut -d',' -f1,12
+```
+
+## Construction of design file and new `Makefile`
+* Week 7 `Makefile` created a VCF file for one sample. 
+
+
+## Reproducibility 
+```
+# 1. Clone the repository
+git clone https://github.com/EXS5825/appbio-2026.git
+
+# 2. Navigate to the week09 folder
+cd appbio-2026/week09
+
+# 3. Run everything up to and including variant calling
+make variants
+
+# 4. Clean
+make clean
 ```
