@@ -33,10 +33,10 @@ curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=sra&id=SRR
 
 ## Updating `Makefile` from Week 7
 There were a few improvements to make first: 
-* genome and index now depend on $(GENOME_FASTA) directly, so Make skips the download and indexing if the files already exist.
-* samtools sort -o $(BAM) && samtools index $(BAM) replaces --write-index, producing a standard .bai index.
-* set -o pipefail added to align so a silent bwa mem failure isn’t swallowed by the pipe.
-* 8 usable cores (leaving 2 for the OS). Change from two jobs, 4 threads to -j 4, THREADS=2 = 8 threads used. 
+* genome and index now depend on `$(GENOME_FASTA)` directly, so `Make` skips the download and indexing if the files already exist.
+* `samtools sort -o $(BAM) && samtools index $(BAM)` replaces `--write-index`, producing a standard `.bai` index.
+* `set -o pipefail` added to `align` so a silent `bwa mem` failure isn’t swallowed by the pipe.
+* 8 usable cores (leaving 2 for the OS). Change from two jobs, 4 threads to `-j 4, THREADS=2` = 8 threads used. 
 
 
 ## Reproducibility 
