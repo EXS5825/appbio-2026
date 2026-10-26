@@ -1,5 +1,5 @@
 # Homework Assignment 9: Create an automated workflow
-I am starting with the workflow that created a VCF file from [Week 7](https://github.com/EXS5825/appbio-2026/tree/main/week07). This pipeline was already fully automated for multiple samples, but now I will add more samples and update it to run in parallel. 
+I am starting with the workflow that created a VCF file from [Week 7](https://github.com/EXS5825/appbio-2026/tree/main/week07). My `Makefile` from Week 8 was already fully automated for multiple samples, but the Week 7 Makefile has a simpler structure that I want to build off of. 
 
 ## Preliminary information
 * Organism: *Ostreococcus tauri* virus
@@ -31,31 +31,13 @@ Double-checked the new sample names:
 curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=sra&id=SRR35893213,SRR35893214,SRR35893215,SRR35893216,SRR35893217,SRR35893218&rettype=runinfo&retmode=csv" | cut -d',' -f1,12
 ```
 
-## Updating `Makefile`
-* Fixed a bug in the `download` section: the `download` rule produced two output files (paired-end reads), and originally `fastq-dump` would have tried to write twice (one for each of the output files) for the same sample if I had tried to run this process in parallel, corrupting the output. 
+## Updating `Makefile` from Week 7
+There were a few improvements to make first: 
+* genome and index now depend on $(GENOME_FASTA) directly, so Make skips the download and indexing if the files already exist.
+* samtools sort -o $(BAM) && samtools index $(BAM) replaces --write-index, producing a standard .bai index.
+* set -o pipefail added to align so a silent bwa mem failure isn’t swallowed by the pipe.
 
-    Simple fix: Added `&:` to the end of this command, which tells Make “these two files come from one recipe, run it once.”: 
-    ```
-    $(FASTQ_DIR)/%_1.fastq $(FASTQ_DIR)/%_2.fastq &:
-    ```
 
-* Also made it easier to run just one sample from the Makefile if desired. Added this to the `Makefile`:
-    ```
-    sample: $(BAM_DIR)/$(call sample2srr,$(SAMPLE))_vs_$(GENOME_NAME).bam
-    ```
-    Which allows me to type: 
-    ```
-    make sample SAMPLE=OtV09-570
-    ```
-    Instead of: 
-    ```
-    make bam/SRR35893210_vs_OtV-1_REF.bam
-    ```
-* My `Makefile` already had a way to run the samples in parallel:
-    ```
-    make -j
-    ```
-    The number of parallel jobs is specified after -j, e.g. `make -j5`. 
 
 ## Reproducibility 
 ```
