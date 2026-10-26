@@ -1,5 +1,5 @@
 # Homework Assignment 9: Create an automated workflow
-I am starting with the workflow that created a VCF file from [Week 7](https://github.com/EXS5825/appbio-2026/tree/main/week07) and [Week 8](https://github.com/EXS5825/appbio-2026/tree/main/week08). The pipeline from Week 8 was already fully automated for multiple samples, but now I will add more samples and update it to run in parallel. 
+I am starting with the workflow that created a VCF file from [Week 8](https://github.com/EXS5825/appbio-2026/tree/main/week08). This pipeline was already fully automated for multiple samples, but now I will add more samples and update it to run in parallel. 
 
 ## Preliminary information
 * Organism: *Ostreococcus tauri* virus
@@ -31,9 +31,13 @@ Double-checked the new sample names:
 curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=sra&id=SRR35893213,SRR35893214,SRR35893215,SRR35893216,SRR35893217,SRR35893218&rettype=runinfo&retmode=csv" | cut -d',' -f1,12
 ```
 
-## Construction of design file and new `Makefile`
-* Week 7 `Makefile` created a VCF file for one sample. 
+## Updating `Makefile`
+* Fixed a bug in the `download` section: the `download` rule produced two output files (paired-end reads), and originally `fastq-dump` would have tried to write twice (one for each of the output files) for the same sample if I had tried to run this process in parallel, corrupting the output. 
 
+Simple fix: Added `&:` to the end of this command, which tells Make “these two files come from one recipe, run it once.”: 
+```
+$(FASTQ_DIR)/%_1.fastq $(FASTQ_DIR)/%_2.fastq &:
+```
 
 ## Reproducibility 
 ```
