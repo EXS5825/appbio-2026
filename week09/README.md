@@ -1,5 +1,5 @@
 # Homework Assignment 9: Create an automated workflow
-I am starting with the workflow that created a VCF file from [Week 8](https://github.com/EXS5825/appbio-2026/tree/main/week08). This pipeline was already fully automated for multiple samples, but now I will add more samples and update it to run in parallel. 
+I am starting with the workflow that created a VCF file from [Week 7](https://github.com/EXS5825/appbio-2026/tree/main/week07). This pipeline was already fully automated for multiple samples, but now I will add more samples and update it to run in parallel. 
 
 ## Preliminary information
 * Organism: *Ostreococcus tauri* virus
