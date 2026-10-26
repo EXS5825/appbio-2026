@@ -60,6 +60,7 @@ Targets:
   report    Generate MultiQC report
   variants  Call variants jointly and produce an indexed VCF
   stats     Generate bcftools stats on the joint VCF
+  sample    Align a single sample: make sample SAMPLE=OtV09-573
   clean     Remove all generated files
 endef
 export USAGE
@@ -70,7 +71,7 @@ usage:
 	@echo "$$USAGE"
 
 # === DOWNLOAD ===
-$(FASTQ_DIR)/%_1.fastq $(FASTQ_DIR)/%_2.fastq:
+$(FASTQ_DIR)/%_1.fastq $(FASTQ_DIR)/%_2.fastq &:
 	mkdir -p $(FASTQ_DIR)
 	fastq-dump -X $(N) --outdir $(FASTQ_DIR) --split-files $*
 
@@ -136,8 +137,11 @@ $(JOINT_STATS): $(JOINT_VCF)
 
 stats: $(JOINT_STATS)
 
+# === SINGLE SAMPLE ===
+sample: $(BAM_DIR)/$(call sample2srr,$(SAMPLE))_vs_$(GENOME_NAME).bam
+
 # === CLEAN ===
 clean:
 	rm -rf $(FASTQ_DIR) $(QC_DIR) $(REPORT_DIR) $(GENOME_DIR) $(BAM_DIR) $(VCF_DIR)
 
-.PHONY: usage download genome index align flagstat qc report variants stats clean
+.PHONY: usage download genome index align flagstat qc report variants stats sample clean
