@@ -1,5 +1,5 @@
 # Homework Assignment 9: Create an automated workflow
-I am starting with the workflow that created a VCF file from [Week 7](https://github.com/EXS5825/appbio-2026/tree/main/week07). My `Makefile` from Week 8 was already fully automated for multiple samples, but the Week 7 Makefile has a simpler structure that I want to build off of. 
+I am starting with the workflow that created a VCF file from [Week 7](https://github.com/EXS5825/appbio-2026/tree/main/week07). My `Makefile` from [Week 8](https://github.com/EXS5825/appbio-2026/tree/main/week08) was already fully automated for multiple samples, but the Week 7 Makefile has a simpler structure that I want to build off of. 
 
 ## Preliminary information
 * Organism: *Ostreococcus tauri* virus
