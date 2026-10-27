@@ -58,15 +58,18 @@ cd appbio-2026/week09
 # 3. Generate the design file
 bio search -H --csv PRJNA1345089 > design.csv
 
-# 4. Call variants for a single sample
+# 4. View the design file output
+cat design.csv | xan view
+
+# 5. Call variants for a single sample
 make SRR=SRR35893209 SAMPLE_NAME=OtV09-573 variants
 
-# 5. Run all samples in parallel
+# 6. Run all samples in parallel
 make batch
 
-# 6. Call variants across all samples simultaneously
+# 7. Call variants across all samples simultaneously
 make call
 
-# 7. Clean up generated files
+# 8. Clean up generated files
 make clean
 ```
