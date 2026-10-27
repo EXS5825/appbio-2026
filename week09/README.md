@@ -47,6 +47,7 @@ This pattern is also visible when you zoom in:
 Many of the other samples are from French lagoons near the Mediterranean or the North Sea (near Germany). Perhaps that might explain the dramatic difference! 
 
 ## Reproducibility 
+(bioinfo environment activated)
 ```
 # 1. Clone the repository
 git clone https://github.com/EXS5825/appbio-2026.git
