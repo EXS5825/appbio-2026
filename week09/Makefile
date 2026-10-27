@@ -25,7 +25,8 @@ BAM          := $(BAM_DIR)/$(SRR)_vs_OtV-1.bam
 FASTQ_1    := $(FASTQ_DIR)/$(SRR)_1.fastq
 FASTQ_2    := $(FASTQ_DIR)/$(SRR)_2.fastq
 # === VARIANT CALLING ===
-VCF        := $(VCF_DIR)/$(SAMPLE_NAME)_vs_$(GENOME_NAME).vcf.gz
+VCF          := $(VCF_DIR)/$(SAMPLE_NAME)_vs_$(GENOME_NAME).vcf.gz
+COMBINED_VCF := $(VCF_DIR)/combined.vcf.gz
 ANN        := -d 100 --annotate INFO/AD,FORMAT/DP,FORMAT/AD,FORMAT/ADF,FORMAT/ADR,FORMAT/SP
 CALL       := --ploidy 2 --annotate FORMAT/GQ
 STATS      := $(VCF_DIR)/$(SAMPLE_NAME)_vs_$(GENOME_NAME).stats.txt
@@ -36,6 +37,7 @@ define USAGE
 Usage: make <target>
 Targets:
   batch     Run the workflow on all samples in parallel
+  call      Call variants on all BAM files simultaneously
   download  Fetch FASTQ files from SRA
   genome    Fetch the reference genome FASTA
   index     Index the reference genome
@@ -58,6 +60,12 @@ batch: genome index
 	    SAMPLE_NAME={sample_alias} \
 	    N=$(N) \
 	    variants
+call:
+	mkdir -p $(VCF_DIR)
+	bcftools mpileup $(ANN) -O u -f $(GENOME_FASTA) $(BAM_DIR)/*.bam | \
+	         bcftools call $(CALL) -mv -O u | \
+	         bcftools norm -f $(GENOME_FASTA) -d all -O u | \
+	         bcftools sort --write-index -O z -o $(COMBINED_VCF)
 download:
 	mkdir -p $(FASTQ_DIR)
 	fastq-dump -X $(N) --outdir $(FASTQ_DIR) --split-files $(SRR)
@@ -93,4 +101,4 @@ stats: variants
 	bcftools stats $(VCF) > $(STATS)
 clean:
 	rm -rf $(FASTQ_DIR) $(QC_DIR) $(REPORT_DIR) $(GENOME_DIR) $(BAM_DIR) $(VCF_DIR)
-.PHONY: usage batch download genome align flagstat qc report variants stats clean
+.PHONY: usage batch call download genome align flagstat qc report variants stats clean
