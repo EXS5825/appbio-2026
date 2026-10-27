@@ -24,22 +24,22 @@ I wanted to call variants simultaneously instead of merging them at the end --> 
 
 ## Visualizing the results in IGV
 Interesting pattern: Two of the samples have a noticeably lower coverage and a different variant pattern than the others.
-<img width="2296" height="1600" alt="image" src="https://github.com/user-attachments/assets/e58dc83a-1efc-4c2d-8e4d-ab941c5c94c5" />
+<img width="1562" height="1078" alt="image" src="https://github.com/user-attachments/assets/3536ef91-38cf-4e5d-96af-392159aea347" />
 
 ---
 
 Another view:
-<img width="2310" height="1508" alt="image" src="https://github.com/user-attachments/assets/e630d617-79be-4b47-ae72-738d5ba55377" />
+<img width="1550" height="1016" alt="image" src="https://github.com/user-attachments/assets/a921f35f-1192-4d7d-9507-b285ff1e013a" />
 
 ---
 
 This pattern seems to stay consistent across the genome. 
-<img width="2296" height="1590" alt="image" src="https://github.com/user-attachments/assets/3b77d5e5-f1da-4616-a0df-a367872047eb" />
+<img width="1544" height="1078" alt="image" src="https://github.com/user-attachments/assets/80fe442f-e003-4bac-9827-f68bc0642406" />
 
 --- 
 
 This pattern is also visible when you zoom in: 
-<img width="2300" height="1558" alt="image" src="https://github.com/user-attachments/assets/2b058bec-fa4e-4289-905e-fe9b8eea8442" />
+<img width="1576" height="1076" alt="image" src="https://github.com/user-attachments/assets/d40244bd-63fb-40a9-b042-43bf0493e736" />
 
 ---
 * SRR35893219 → OtV19-T2 (Chile: South Pacific Ocean)
