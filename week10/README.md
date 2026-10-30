@@ -8,9 +8,9 @@ Unfortunately the organisms that I've been using (*Genlisea aurea* plant or *Ost
 * **Associated paper:** Heiman, C. M., Antar, H., Fournes, F., Keel, C., & Vacheron, J. (2025). The repressor PrtR1 and the global H-NS-like regulators MvaT and MvaV enable the fine-tuning of R-tailocin expression in Pseudomonas protegens. *BMC microbiology, 25*(1), 286. https://doi.org/10.1186/s12866-025-03983-9
 
 **Background information:**
-Proteins of interest (all C-terminally V5-tagged):
-* PrtR1 — LexA-like locus-specific repressor of the R-tailocin gene cluster; directly binds the promoter region of the cluster and represses its expression under non-inducing conditions; cleaved by RecA* upon DNA damage
-* MvaT — H-NS-like global regulator; acts as a master regulator that indirectly influences R-tailocin expression; binds broadly to AT-rich regions across the genome
+Proteins of interest (all C-terminally V5-tagged for the anti-V5 antibody to pull down):
+* PrtR1 — LexA-like locus-specific repressor of the R-tailocin gene cluster; directly binds the promoter region of the cluster and represses its expression under non-inducing conditions; cleaved by activated RecA* upon DNA damage
+* MvaT — H-NS-like global regulator; a master regulator that indirectly influences R-tailocin expression; binds broadly to AT-rich regions across the genome
 * MvaV — H-NS-like global regulator; works in concert with MvaT as a heterodimer
 * ParB — cell cycle-associated protein used as a positive control (known to bind near the origin of replication)
 
