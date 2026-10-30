@@ -2,27 +2,25 @@
 ## Preliminary information
 Unfortunately the organisms that I've been using (*Genlisea aurea* plant or *Ostreococcus tauri* virus) for previous analyses do not have any ChIP-seq data available. So I am going to switch organisms again. 
 
-* **New organism:** *Xanthomonas campestris* pv *campestris*, a bacteria that infects various plants and also produces xanthan gum.
+* **New organism:** Pseudomonas protegens CHA0, a gram-negative plant root-colonizing bacterium that produces R-tailocins — contractile phage tail-like particles that specifically target closely related kin strains of other bacteria. R-tailocin production leads to lysis of the producing cells and must therefore be tightly regulated.
 * **Sequencing type:** ChIP-seq
-* **Project:** PRJNA492409
-* **Associated paper:** Deng, C. Y., Zhang, H., Wu, Y., Ding, L. L., Pan, Y., Sun, S. T., Li, Y. J., Wang, L., & Qian, W. (2018). Proteolysis of histidine kinase VgrS inhibits its autophosphorylation and promotes osmostress resistance in Xanthomonas campestris. Nature communications, 9(1), 4791. https://doi.org/10.1038/s41467-018-07228-4
+* **Project:** PRJEB83774
+* **Associated paper:** Heiman, C. M., Antar, H., Fournes, F., Keel, C., & Vacheron, J. (2025). The repressor PrtR1 and the global H-NS-like regulators MvaT and MvaV enable the fine-tuning of R-tailocin expression in Pseudomonas protegens. *BMC microbiology, 25*(1), 286. https://doi.org/10.1186/s12866-025-03983-9
 
 **Background information:**
-* VgrS — the histidine kinase (HK)
-  * Membrane-bound receptor
-  * Autophosphorylates itself at His¹⁸⁶
-  * Transfers the phosphoryl group to VgrR
-  * Its sensor region is cleaved by Prc under osmostress
-* VgrR — the response regulator (RR)
-  * Receives the phosphoryl group from VgrS at Asp⁵¹
-  * When phosphorylated (VgrR-P): binds certain promoters
-  * When dephosphorylated (VgrR): binds a different set of promoters with higher affinity
+Proteins of interest (all C-terminally V5-tagged):
+* PrtR1 — LexA-like locus-specific repressor of the R-tailocin gene cluster; directly binds the promoter region of the cluster and represses its expression under non-inducing conditions; cleaved by RecA* upon DNA damage
+* MvaT — H-NS-like global regulator; acts as a master regulator that indirectly influences R-tailocin expression; binds broadly to AT-rich regions across the genome
+* MvaV — H-NS-like global regulator; works in concert with MvaT as a heterodimer
+* ParB — cell cycle-associated protein used as a positive control (known to bind near the origin of replication)
 
-This ChIP-seq database identifies genes with promoter regions bound by VgrR in X. campestris pv. campestris grown under osmostress conditions. The authors uploaded two samples: 
-* WT + sorbitol ([SRX4726391](https://www.ncbi.nlm.nih.gov/sra/?term=SRX4726391))
-  * prc protease is active, cleaves VgrS --> VgrR is dephosphorylated, and binds certain promoters
-* Δprc + sorbitol ([SRX4726392](https://www.ncbi.nlm.nih.gov/sra/SRX4726392[accn]))
-  * prc protease is deleted from the bacterial genome, VgrS stays intact --> VgrR stays phosphorylated, and binds different promoters
+Experimental setup:
+* Control: CHA0 wild type without any V5-tagged protein — used as a negative control for non-specific immunoprecipitation
+* Conditions:
+ * Non-inducing: no mitomycin C (MMC)
+ * Inducing: 9 µM mitomycin C (MMC) for 3 hours — triggers the SOS response and R-tailocin gene cluster expression
+
+Overall question of the paper: Where in the *P. protegens* CHA0 genome do PrtR1, MvaT, and MvaV bind, and does their binding pattern change between non-inducing and inducing (SOS-activated) conditions? Do these regulators directly or indirectly control R-tailocin gene cluster expression?
 
 ## Making the design file
 ```
