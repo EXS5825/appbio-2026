@@ -9,13 +9,13 @@ Unfortunately the organisms that I've been using (*Genlisea aurea* plant or *Ost
 
 **Background information:**
 Proteins of interest (all C-terminally V5-tagged for the anti-V5 antibody to pull down):
-* PrtR1 —-> LexA-like locus-specific repressor of the R-tailocin gene cluster
+* PrtR1 --> LexA-like locus-specific repressor of the R-tailocin gene cluster
   * directly binds the promoter region of the cluster and represses its expression under non-inducing conditions; cleaved by activated RecA* upon DNA damage
-* MvaT —-> H-NS-like global regulator
+* MvaT --> H-NS-like global regulator
   * a master regulator that indirectly influences R-tailocin expression; binds broadly to AT-rich regions across the genome
-* MvaV —-> H-NS-like global regulator
+* MvaV --> H-NS-like global regulator
   * works in concert with MvaT as a heterodimer
-* ParB —-> cell cycle-associated protein known to bind near the origin of replication
+* ParB --> cell cycle-associated protein known to bind near the origin of replication
   * used as a positive control 
 
 Experimental setup:
