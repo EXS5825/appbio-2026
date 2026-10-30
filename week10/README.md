@@ -2,7 +2,7 @@
 ## Preliminary information
 Unfortunately the organisms that I've been using (*Genlisea aurea* plant or *Ostreococcus tauri* virus) for previous analyses do not have any ChIP-seq data available. So I am going to switch organisms again. 
 
-* **New organism:** Pseudomonas protegens CHA0, a gram-negative plant root-colonizing bacterium that produces R-tailocins — contractile phage tail-like particles that specifically target closely related kin strains of other bacteria. R-tailocin production leads to lysis of the producing cells and must therefore be tightly regulated.
+* **New organism:** Pseudomonas protegens CHA0, a gram-negative plant root-colonizing bacterium that produces R-tailocins — contractile phage tail-like particles that specifically target closely related kin strains of other bacteria.
 * **Sequencing type:** ChIP-seq
 * **Project:** PRJEB83774
 * **Associated paper:** Heiman, C. M., Antar, H., Fournes, F., Keel, C., & Vacheron, J. (2025). The repressor PrtR1 and the global H-NS-like regulators MvaT and MvaV enable the fine-tuning of R-tailocin expression in Pseudomonas protegens. *BMC microbiology, 25*(1), 286. https://doi.org/10.1186/s12866-025-03983-9
