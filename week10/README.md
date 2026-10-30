@@ -7,8 +7,22 @@ Unfortunately the organisms that I've been using (*Genlisea aurea* plant or *Ost
 * **Project:** PRJNA492409
 * **Associated paper:** Deng, C. Y., Zhang, H., Wu, Y., Ding, L. L., Pan, Y., Sun, S. T., Li, Y. J., Wang, L., & Qian, W. (2018). Proteolysis of histidine kinase VgrS inhibits its autophosphorylation and promotes osmostress resistance in Xanthomonas campestris. Nature communications, 9(1), 4791. https://doi.org/10.1038/s41467-018-07228-4
 
+**Background information:**
+* VgrS — the histidine kinase (HK)
+  * Membrane-bound receptor
+  * Autophosphorylates itself at His¹⁸⁶
+  * Transfers the phosphoryl group to VgrR
+  * Its sensor region is cleaved by Prc under osmostress
+* VgrR — the response regulator (RR)
+  * Receives the phosphoryl group from VgrS at Asp⁵¹
+  * When phosphorylated (VgrR-P): binds certain promoters
+  * When dephosphorylated (VgrR): binds a different set of promoters with higher affinity
 
-Adjusted coverage to 333k to account for larger genome size. 
+This ChIP-seq database identifies genes with promoter regions bound by VgrR in X. campestris pv. campestris grown under osmostress conditions. The authors uploaded two samples: 
+* WT + sorbitol (SRX4726391)
+  * prc protease is active, cleaves VgrS --> VgrR is dephosphorylated, and binds certain promoters
+* Δprc + sorbitol (SRX4726392)
+  * prc protease is deleted from the bacterial genome, VgrS stays intact --> VgrR stays phosphorylated, and binds different promoters
 
 ## Reproducibility: 
 Make sure `deeptools` and `macs3` (MACS: Model-based Analysis for ChIP-Seq) are installed. 
