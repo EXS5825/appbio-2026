@@ -11,9 +11,11 @@ Unfortunately the organisms (*Genlisea aurea* plant or *Ostreococcus tauri* viru
 Adjusted coverage to 333k to account for larger genome size. 
 
 ## Reproducibility: 
-Make sure the `deeptools` package is installed. 
+Make sure `deeptools` and `macs3` (MACS: Model-based Analysis for ChIP-Seq) are installed. 
 ```
 pixi add deeptools
+
+pixi add macs3
 ```
 
 **To reproduce the analysis:**
