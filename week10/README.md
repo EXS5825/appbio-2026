@@ -24,7 +24,7 @@ This ChIP-seq database identifies genes with promoter regions bound by VgrR in X
 * Δprc + sorbitol ([SRX4726392](https://www.ncbi.nlm.nih.gov/sra/SRX4726392[accn]))
   * prc protease is deleted from the bacterial genome, VgrS stays intact --> VgrR stays phosphorylated, and binds different promoters
 
-## Workflow
+## Making the design file
 ```
 # Get the design file
 bio search -H -csv PRJNA492409 > runinfo.csv
@@ -41,6 +41,12 @@ Only shows the two ChIP-seq samples:
 │ 0 │ SRR7888762    │ SAMN10102209     │ … │ ['https… │ 322 MB, 342 MB files; 6.3 mi… │
 │ 1 │ SRR7888763    │ SAMN10102208     │ … │ ['https… │ 341 MB, 357 MB files; 6.7 mi… │
 └───┴───────────────┴──────────────────┴───┴──────────┴───────────────────────────────┘
+```
+Reformatted the information into a more helpful design file: 
+```
+run,type,method,sample
+SRR7888762,CvgrR-his,ChIP_Seq,ChIP_WT_CvgrR-his
+SRR7888763,CvgrR-his,ChIP_Seq,ChIP_DLTPrc_CvgrR-his
 ```
 
 
