@@ -19,9 +19,9 @@ Unfortunately the organisms that I've been using (*Genlisea aurea* plant or *Ost
   * When dephosphorylated (VgrR): binds a different set of promoters with higher affinity
 
 This ChIP-seq database identifies genes with promoter regions bound by VgrR in X. campestris pv. campestris grown under osmostress conditions. The authors uploaded two samples: 
-* WT + sorbitol (SRX4726391)
+* WT + sorbitol ([SRX4726391](https://www.ncbi.nlm.nih.gov/sra/?term=SRX4726391))
   * prc protease is active, cleaves VgrS --> VgrR is dephosphorylated, and binds certain promoters
-* Δprc + sorbitol (SRX4726392)
+* Δprc + sorbitol ([SRX4726392](https://www.ncbi.nlm.nih.gov/sra/SRX4726392[accn]))
   * prc protease is deleted from the bacterial genome, VgrS stays intact --> VgrR stays phosphorylated, and binds different promoters
 
 ## Reproducibility: 
