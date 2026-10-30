@@ -21,8 +21,8 @@ Proteins of interest (all C-terminally V5-tagged for the anti-V5 antibody to pul
 Experimental setup:
 * Control: CHA0 wild type without any V5-tagged protein — used as a negative control for non-specific immunoprecipitation
 * Conditions:
- * Non-inducing: no mitomycin C (MMC)
- * Inducing: 9 µM mitomycin C (MMC) for 3 hours — triggers the SOS response and R-tailocin gene cluster expression
+  * Non-inducing: no mitomycin C (MMC)
+  * Inducing: 9 µM mitomycin C (MMC) for 3 hours — triggers the SOS response and R-tailocin gene cluster expression
 
 Overall question of the paper: Where in the *P. protegens* CHA0 genome do PrtR1, MvaT, and MvaV bind, and does their binding pattern change between non-inducing and inducing (SOS-activated) conditions? Do these regulators directly or indirectly control R-tailocin gene cluster expression?
 
