@@ -31,7 +31,6 @@ bio search -H -csv PRJNA492409 > runinfo.csv
 
 # Look at the design file
 xan view runinfo.csv
-
 ```
 Only shows the two ChIP-seq samples:
 ```
