@@ -1,6 +1,6 @@
 # Homework Assignment 10: Peak Calling
 ## Preliminary information
-Unfortunately the organisms (*Genlisea aurea* plant or *Ostreococcus tauri* virus) that I've been using for previous analyses do not have any ChIP-seq data available. So I am going to switch organisms again. 
+Unfortunately the organisms that I've been using (*Genlisea aurea* plant or *Ostreococcus tauri* virus) for previous analyses do not have any ChIP-seq data available. So I am going to switch organisms again. 
 
 * **New organism:** *Xanthomonas campestris* pv *campestris*, a bacteria that infects various plants and also produces xanthan gum.
 * **Sequencing type:** ChIP-seq
