@@ -32,19 +32,10 @@ Key questions of the paper:
 ## Making the design file
 ```
 # Get the design file
-bio search -H -csv PRJNA492409 > runinfo.csv
+bio search -H -csv PRJEB83774 > runinfo.csv
 
 # Look at the design file
 xan view runinfo.csv
-```
-Only shows the two ChIP-seq samples:
-```
-┌───┬───────────────┬──────────────────┬───┬──────────┬───────────────────────────────┐
-│ - │ run_accession │ sample_accession │ … │ fastq_u… │ info                          │
-├───┼───────────────┼──────────────────┼───┼──────────┼───────────────────────────────┤
-│ 0 │ SRR7888762    │ SAMN10102209     │ … │ ['https… │ 322 MB, 342 MB files; 6.3 mi… │
-│ 1 │ SRR7888763    │ SAMN10102208     │ … │ ['https… │ 341 MB, 357 MB files; 6.7 mi… │
-└───┴───────────────┴──────────────────┴───┴──────────┴───────────────────────────────┘
 ```
 Reformatted the information into a more helpful design file: 
 ```
