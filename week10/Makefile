@@ -1,32 +1,42 @@
 # === SRR ===
-SRR        := SRR35893209
+SRR        := ERR14089388
+
 # === DIRECTORIES ===
 FASTQ_DIR  := fastq
 QC_DIR     := qc
 REPORT_DIR := report
 GENOME_DIR := genome
 BAM_DIR    := bam
-VCF_DIR    := vcf
+PEAKS_DIR    := peaks
+
 # === SETTINGS ===
 THREADS    := 4
-N          := 12700
+
 # === REFERENCE GENOME ===
-GENOME_URL   := https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=nuccore&id=FN386611&rettype=fasta&retmode=text
-GENOME_NAME  := OtV-1_REF
-GENOME_FASTA := $(GENOME_DIR)/OtV-1_REF.fasta
+GENOME_URL   := https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/900/560/965/GCF_900560965.1_PPRCHA0/GCF_900560965.1_PPRCHA0_genomic.fna.gz
+GENOME_NAME  := CHA0
+GENOME_FASTA := $(GENOME_DIR)/$(GENOME_NAME).fna.gz
+
 # === SAMPLE ===
-SAMPLE_NAME  := OtV1_WGS
-BAM          := $(BAM_DIR)/SRR35893209_vs_OtV-1.bam
+SAMPLE := ChIP_V-V5_NI
+BAM          := $(BAM_DIR)/$(SRR)_vs_$(GENOME_NAME).bam
+
 # === READS ===
 FASTQ_1    := $(FASTQ_DIR)/$(SRR)_1.fastq
 FASTQ_2    := $(FASTQ_DIR)/$(SRR)_2.fastq
-# === VARIANT CALLING ===
-VCF        := $(VCF_DIR)/$(SAMPLE_NAME)_vs_$(GENOME_NAME).vcf.gz
-ANN        := -d 100 --annotate INFO/AD,FORMAT/DP,FORMAT/AD,FORMAT/ADF,FORMAT/ADR,FORMAT/SP
-CALL       := --ploidy 2 --annotate FORMAT/GQ
-STATS      := $(VCF_DIR)/$(SAMPLE_NAME)_vs_$(GENOME_NAME).stats.txt
+
+# === PEAK CALLING ===
+BKG        := ChIP_C_NI
+BKG_SRR    := ERR14089381
+BAM_BKG    := $(BAM_DIR)/$(BKG_SRR)_vs_$(GENOME_NAME).bam
+PEAKS      := $(PEAKS_DIR)/$(SAMPLE)_peaks.narrowPeak
+GENOME_SIZE := 6.86e6
+
 # === BEHAVIOR ===
+DESIGN   := design.csv
+PARALLEL := parallel --eta --colsep , --header : --jobs 2 --lb
 .DELETE_ON_ERROR:
+
 # === USAGE TEXT ===
 define USAGE
 Usage: make <target>
@@ -38,26 +48,35 @@ Targets:
   flagstat  Generate a summary of the BAM file
   qc        Run FastQC on downloaded files
   report    Generate MultiQC report
-  variants  Call variants and produce an indexed VCF
-  stats     Generate bcftools statistics report on the VCF
+  peaks     Call peaks and produce an indexed peak file
+  all       Run align and peaks
+  batch     Run all samples from design.csv in parallel
   clean     Remove all generated files
 endef
 export USAGE
+
 # --- all definitions above the line, all code below the line ---
+
 usage:
 	@echo "$$USAGE"
 download:
 	mkdir -p $(FASTQ_DIR)
-	fastq-dump -X $(N) --outdir $(FASTQ_DIR) --split-files $(SRR)
-genome:
+	fastq-dump --outdir $(FASTQ_DIR) --split-files $(SRR)
+genome: $(GENOME_FASTA)
+$(GENOME_FASTA):                                       
 	mkdir -p $(GENOME_DIR)
-	curl -o $(GENOME_FASTA) "$(GENOME_URL)"
+	curl -fsSL $(GENOME_URL) | gunzip | bgzip > $@
+	samtools faidx $@
+
 index: genome
 	bwa index $(GENOME_FASTA)
 align: download index
 	mkdir -p $(BAM_DIR)
-	bwa mem $(GENOME_FASTA) $(FASTQ_1) $(FASTQ_2) | \
-	        samtools sort --write-index -o $(BAM)
+	bwa mem \
+	    -R "@RG\tID:$(SRR)\tSM:$(SAMPLE)\tLB:$(SRR)_lib\tPL:ILLUMINA\tPU:$(SRR)" \
+	    -t $(THREADS) \
+	    $(GENOME_FASTA) $(FASTQ_1) $(FASTQ_2) | \
+	    samtools sort --write-index -o $(BAM)
 flagstat: align
 	samtools flagstat $(BAM)
 qc: download
@@ -68,14 +87,27 @@ qc: download
 report: qc
 	mkdir -p $(REPORT_DIR)
 	multiqc $(QC_DIR) --outdir $(REPORT_DIR)
-variants: align
-	mkdir -p $(VCF_DIR)
-	bcftools mpileup $(ANN) -O u -f $(GENOME_FASTA) $(BAM) | \
-	         bcftools call $(CALL) -mv -O u | \
-	         bcftools norm -f $(GENOME_FASTA) -d all -O u | \
-	         bcftools sort --write-index -O z -o $(VCF)
-stats: variants
-	bcftools stats $(VCF) > $(STATS)
+
+peaks: $(PEAKS)
+$(BAM_BKG): $(GENOME_FASTA).bwt
+	mkdir -p $(BAM_DIR)
+	fastq-dump --outdir $(FASTQ_DIR) --split-files $(BKG_SRR)
+	bwa mem \
+	    -R "@RG\tID:$(BKG_SRR)\tSM:$(BKG)\tLB:$(BKG_SRR)_lib\tPL:ILLUMINA\tPU:$(BKG_SRR)" \
+	    -t $(THREADS) \
+	    $(GENOME_FASTA) $(FASTQ_DIR)/$(BKG_SRR)_1.fastq $(FASTQ_DIR)/$(BKG_SRR)_2.fastq | \
+	    samtools sort --write-index -o $@
+
+$(PEAKS): $(BAM) $(BAM_BKG)
+	mkdir -p $(PEAKS_DIR)
+	macs3 callpeak -g $(GENOME_SIZE) -n $(SAMPLE) \
+	    -t $(BAM) -c $(BAM_BKG) --outdir $(PEAKS_DIR)
+
+all: align peaks
+
+batch:
+	cat $(DESIGN) | $(PARALLEL) make SRR={run} SAMPLE={sample} all
+
 clean:
-	rm -rf $(FASTQ_DIR) $(QC_DIR) $(REPORT_DIR) $(GENOME_DIR) $(BAM_DIR) $(VCF_DIR)
-.PHONY: usage download genome index align flagstat qc report variants stats clean
+	rm -rf $(FASTQ_DIR) $(QC_DIR) $(REPORT_DIR) $(GENOME_DIR) $(BAM_DIR) $(PEAKS_DIR)
+.PHONY: usage download genome index align flagstat qc report peaks all batch clean
