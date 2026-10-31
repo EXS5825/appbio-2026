@@ -60,8 +60,8 @@ curl -fsSL https://data.biostarhandbook.com/make/chipseq.2026.mk > Makefile
 Made some changes to my `Makefile`:
 * There were a couple places I had hardcoded values that should have been calling back to the definitions instead
 * Replace variant calling with peak calling
-* Add SAMPLE variable + read groups
-* Add design.csv + batch target
+* Add `SAMPLE` variable + read groups
+* Add `design.csv` + `batch` target
 * Add all target
 
 ## Reproducibility: 
