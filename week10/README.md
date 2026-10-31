@@ -51,6 +51,13 @@ ERR14089390,T-V5,ChIP_Seq,ChIP_T-V5_NI,MvaT
 ERR14089384,B-V5,ChIP_Seq,ChIP_B-V5_NI,ParB
 ERR14089386,C,ChIP_Seq,ChIP_C_I,Input
 ```
+I decided to focus on just one protein and its control to start:
+```
+# Just MvaV non-inducing + its control
+grep -E "V-V5_NI|ChIP_C_NI" design.csv | \
+    parallel --colsep , --header : --jobs 2 make SRR={run} SAMPLE={sample} all
+```
+
 ## Makefile adaptation
 Started with my `Makefile` from Week 7. Compared it with the `Makefile` in the Biostar handbook:
 ```
@@ -63,6 +70,8 @@ Made some changes to my `Makefile`:
 * Add `SAMPLE` variable + read groups
 * Add `design.csv` + `batch` target
 * Add all target
+* Add *Pseudomonas protegens* CHA0 genome size for `macs3 -g`
+* Adjust the rest of the definitions for the new dataset (samples, SRR number, genome accession, etc.)
 
 ## Reproducibility: 
 Make sure `deeptools` and `macs3` (MACS: Model-based Analysis for ChIP-Seq) are installed. 
