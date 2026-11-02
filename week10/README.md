@@ -1,61 +1,19 @@
 # Homework Assignment 10: Peak Calling
 ## Preliminary information
-Unfortunately the organisms that I've been using (*Genlisea aurea* plant or *Ostreococcus tauri* virus) for previous analyses do not have any ChIP-seq data available. So I am going to switch organisms again. 
+Unfortunately the organisms that I've been using (*Genlisea aurea* plant or *Ostreococcus tauri* virus) for previous analyses do not have any ChIP-seq data available. I found a ChIP-seq project summarized below: 
 
-* **New organism:** Pseudomonas protegens CHA0, a gram-negative plant root-colonizing bacterium that produces R-tailocins (contractile phage tail-like particles) that specifically target closely related kin strains of other bacteria.
+* **New organism:** *Escherichia coli* K-12
 * **Sequencing type:** ChIP-seq
-* **Project:** PRJEB83774
-* **Associated paper:** Heiman, C. M., Antar, H., Fournes, F., Keel, C., & Vacheron, J. (2025). The repressor PrtR1 and the global H-NS-like regulators MvaT and MvaV enable the fine-tuning of R-tailocin expression in Pseudomonas protegens. *BMC microbiology, 25*(1), 286. https://doi.org/10.1186/s12866-025-03983-9
+* **Project:** PRJNA644195
+* **Associated paper:** Krogh, T. J., Franke, A., Møller-Jensen, J., & Kaleta, C. (2020). Elucidating the Influence of Chromosomal Architecture on Transcriptional Regulation in Prokaryotes - Observing Strong Local Effects of Nucleoid Structure on Gene Regulation. *Frontiers in microbiology, 11*, 2002. https://doi.org/10.3389/fmicb.2020.02002
 
-**Background information:**
-Proteins of interest (all C-terminally V5-tagged for the anti-V5 antibody to pull down):
-* PrtR1 --> LexA-like locus-specific repressor of the R-tailocin gene cluster
-  * directly binds the promoter region of the cluster and represses its expression under non-inducing conditions; cleaved by activated RecA* upon DNA damage
-* MvaT --> H-NS-like global regulator
-  * a master regulator that indirectly influences R-tailocin expression; binds broadly to AT-rich regions across the genome
-* MvaV --> H-NS-like global regulator
-  * works in concert with MvaT as a heterodimer
-* ParB --> cell cycle-associated protein known to bind near the origin of replication
-  * used as a positive control 
-
-Experimental setup:
-* Control: CHA0 wild type without any V5-tagged protein — used as a negative control for non-specific immunoprecipitation
-* Conditions:
-  * Non-inducing: no mitomycin C (MMC)
-  * Inducing: 9 µM mitomycin C (MMC) for 3 hours — triggers the SOS response and R-tailocin gene cluster expression
-
-Key questions of the paper: 
-* Where in the *P. protegens* CHA0 genome do PrtR1, MvaT, and MvaV bind?
-* Does their binding pattern change between non-inducing and inducing (SOS-activated) conditions? 
-* Do these regulators directly or indirectly control R-tailocin gene cluster expression?
 
 ## Making the design file
+I decided to focus on just one protein (SigmaD) and its control to start. 
 ```
-# Get the design file
-bio search -H -csv PRJEB83774 > runinfo.csv
-
-# Look at the design file
-xan view runinfo.csv
-```
-Reformatted the information into a more helpful design file (added protein designation because labels were otherwise confusing): 
-```
-run,type,method,sample,protein
-ERR14089387,V-V5,ChIP_Seq,ChIP_V-V5_I,MvaV
-ERR14089385,R-V5,ChIP_Seq,ChIP_R-V5_NI,PrtR1
-ERR14089388,V-V5,ChIP_Seq,ChIP_V-V5_NI,MvaV
-ERR14089381,C,ChIP_Seq,ChIP_C_NI,Input
-ERR14089382,T-V5,ChIP_Seq,ChIP_T-V5_I,MvaT
-ERR14089383,R-V5,ChIP_Seq,ChIP_R-V5_I,PrtR1
-ERR14089389,B-V5,ChIP_Seq,ChIP_B-V5_I,ParB
-ERR14089390,T-V5,ChIP_Seq,ChIP_T-V5_NI,MvaT
-ERR14089384,B-V5,ChIP_Seq,ChIP_B-V5_NI,ParB
-ERR14089386,C,ChIP_Seq,ChIP_C_I,Input
-```
-I decided to focus on just one protein and its control to start:
-```
-# Just MvaV non-inducing + its control
-grep -E "V-V5_NI|ChIP_C_NI" design.csv | \
-    parallel --colsep , --header : --jobs 2 make SRR={run} SAMPLE={sample} all
+run,sample,bkg_srr,bkg
+SRR12148167,SigmaD_OD0.2_rep1,SRR12148187,Input_OD0.2_rep1
+SRR12148177,Beta_OD0.2_rep1,SRR12148187,Input_OD0.2_rep1
 ```
 
 ## Makefile adaptation
@@ -72,6 +30,26 @@ Made some changes to my `Makefile`:
 * Add all target
 * Add *Pseudomonas protegens* CHA0 genome size for `macs3 -g`
 * Adjust the rest of the definitions for the new dataset (samples, SRR number, genome accession, etc.)
+
+# Peak calling
+How many peaks were called in the SigmaD sample?
+```
+wc -l peaks/SigmaD_OD0.2_rep1_peaks.narrowPeak peaks/SigmaD_OD0.2_rep2_peaks.narrowPeak
+```
+Replicate 1: 1028 peaks
+Replicate 2: 1094 peaks
+
+The peaks seem to agree between the replicates. Here's a visualization in IGV:
+![alt text](image-2.png)
+
+I had to run this to find peaks from replicate 1 that had no overlap in replicate 2: 
+```
+bedtools intersect -a peaks/SigmaD_OD0.2_rep1_peaks.narrowPeak \
+                   -b peaks/SigmaD_OD0.2_rep2_peaks.narrowPeak -v | head
+```
+The ones that didn't match looked weaker. Example:
+![alt text](image.png)
+
 
 ## Reproducibility: 
 Make sure `deeptools` and `macs3` (MACS: Model-based Analysis for ChIP-Seq) are installed. 
@@ -93,4 +71,7 @@ cd appbio-2026/week10
 
 # 3. Run the Makefile
 make all
+
+# 4. Clean
+make clean
 ```

@@ -1,5 +1,5 @@
-# === SRR ===
-SRR        := ERR14089388
+# === SRRs ===
+SRR        := SRR12148167
 
 # === DIRECTORIES ===
 FASTQ_DIR  := fastq
@@ -7,30 +7,30 @@ QC_DIR     := qc
 REPORT_DIR := report
 GENOME_DIR := genome
 BAM_DIR    := bam
-PEAKS_DIR    := peaks
+PEAKS_DIR  := peaks
 
 # === SETTINGS ===
 THREADS    := 4
 
 # === REFERENCE GENOME ===
-GENOME_URL   := https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/900/560/965/GCF_900560965.1_PPRCHA0/GCF_900560965.1_PPRCHA0_genomic.fna.gz
-GENOME_NAME  := CHA0
+GENOME_URL   := https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/005/845/GCF_000005845.2_ASM584v2/GCF_000005845.2_ASM584v2_genomic.fna.gz
+GENOME_NAME  := MG1655
 GENOME_FASTA := $(GENOME_DIR)/$(GENOME_NAME).fna.gz
 
 # === SAMPLE ===
-SAMPLE := ChIP_V-V5_NI
-BAM          := $(BAM_DIR)/$(SRR)_vs_$(GENOME_NAME).bam
+SAMPLE := SigmaD_OD0.2_rep1
+BAM    := $(BAM_DIR)/$(SRR)_vs_$(GENOME_NAME).bam
 
 # === READS ===
 FASTQ_1    := $(FASTQ_DIR)/$(SRR)_1.fastq
 FASTQ_2    := $(FASTQ_DIR)/$(SRR)_2.fastq
 
 # === PEAK CALLING ===
-BKG        := ChIP_C_NI
-BKG_SRR    := ERR14089381
+BKG        := Input_OD0.2_rep1
+BKG_SRR    := SRR12148187
 BAM_BKG    := $(BAM_DIR)/$(BKG_SRR)_vs_$(GENOME_NAME).bam
 PEAKS      := $(PEAKS_DIR)/$(SAMPLE)_peaks.narrowPeak
-GENOME_SIZE := 6.86e6
+GENOME_SIZE := 4641652
 
 # === BEHAVIOR ===
 DESIGN   := design.csv
@@ -51,6 +51,7 @@ Targets:
   peaks     Call peaks and produce an indexed peak file
   all       Run align and peaks
   batch     Run all samples from design.csv in parallel
+  dry-run   Preview all steps without running them
   clean     Remove all generated files
 endef
 export USAGE
@@ -59,18 +60,20 @@ export USAGE
 
 usage:
 	@echo "$$USAGE"
+
 download:
 	mkdir -p $(FASTQ_DIR)
-	prefetch $(SRR)
-	fastq-dump --outdir $(FASTQ_DIR) --split-files --skip-technical -N 1 -X 200000 $(SRR)
+	fastq-dump --outdir $(FASTQ_DIR) --split-files $(SRR)
+
 genome: $(GENOME_FASTA)
-$(GENOME_FASTA):                                       
+$(GENOME_FASTA):
 	mkdir -p $(GENOME_DIR)
 	curl -fsSL $(GENOME_URL) | gunzip | bgzip > $@
 	samtools faidx $@
 
 index: genome
 	bwa index $(GENOME_FASTA)
+
 align: download index
 	mkdir -p $(BAM_DIR)
 	bwa mem \
@@ -78,13 +81,16 @@ align: download index
 	    -t $(THREADS) \
 	    $(GENOME_FASTA) $(FASTQ_1) $(FASTQ_2) | \
 	    samtools sort --write-index -o $(BAM)
+
 flagstat: align
 	samtools flagstat $(BAM)
+
 qc: download
 	mkdir -p $(QC_DIR)
 	fastqc $(FASTQ_DIR)/$(SRR)*.fastq \
 	       --outdir $(QC_DIR) \
 	       --threads $(THREADS)
+
 report: qc
 	mkdir -p $(REPORT_DIR)
 	multiqc $(QC_DIR) --outdir $(REPORT_DIR)
@@ -92,8 +98,7 @@ report: qc
 peaks: $(PEAKS)
 $(BAM_BKG): $(GENOME_FASTA).bwt
 	mkdir -p $(BAM_DIR)
-	prefetch $(BKG_SRR)
-	fastq-dump --outdir $(FASTQ_DIR) --split-files --skip-technical -N 1 -X 200000 $(BKG_SRR)
+	fastq-dump --outdir $(FASTQ_DIR) --split-files $(BKG_SRR)
 	bwa mem \
 	    -R "@RG\tID:$(BKG_SRR)\tSM:$(BKG)\tLB:$(BKG_SRR)_lib\tPL:ILLUMINA\tPU:$(BKG_SRR)" \
 	    -t $(THREADS) \
@@ -103,13 +108,18 @@ $(BAM_BKG): $(GENOME_FASTA).bwt
 $(PEAKS): $(BAM) $(BAM_BKG)
 	mkdir -p $(PEAKS_DIR)
 	macs3 callpeak -g $(GENOME_SIZE) -n $(SAMPLE) \
-	    -t $(BAM) -c $(BAM_BKG) --outdir $(PEAKS_DIR)
+	    -t $(BAM) -c $(BAM_BKG) -f BAMPE --outdir $(PEAKS_DIR)
+
+dry-run:
+	$(MAKE) all --dry-run
+	@echo "Dry run complete — no commands were executed"
 
 all: align peaks
 
 batch:
-	cat $(DESIGN) | $(PARALLEL) make SRR={run} SAMPLE={sample} all
+	cat $(DESIGN) | $(PARALLEL) make SRR={run} SAMPLE={sample} BKG_SRR={bkg_srr} BKG={bkg} all
 
 clean:
 	rm -rf $(FASTQ_DIR) $(QC_DIR) $(REPORT_DIR) $(GENOME_DIR) $(BAM_DIR) $(PEAKS_DIR)
-.PHONY: usage download genome index align flagstat qc report peaks all batch clean
+
+.PHONY: usage download genome index align flagstat qc report peaks all batch dry-run clean
