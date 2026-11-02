@@ -61,7 +61,7 @@ usage:
 	@echo "$$USAGE"
 download:
 	mkdir -p $(FASTQ_DIR)
-	fastq-dump --outdir $(FASTQ_DIR) --split-files $(SRR)
+	fasterq-dump --outdir $(FASTQ_DIR) --split-files --threads $(THREADS) $(SRR)
 genome: $(GENOME_FASTA)
 $(GENOME_FASTA):                                       
 	mkdir -p $(GENOME_DIR)
@@ -91,7 +91,7 @@ report: qc
 peaks: $(PEAKS)
 $(BAM_BKG): $(GENOME_FASTA).bwt
 	mkdir -p $(BAM_DIR)
-	fastq-dump --outdir $(FASTQ_DIR) --split-files $(BKG_SRR)
+	fasterq-dump --outdir $(FASTQ_DIR) --split-files --threads $(THREADS) $(BKG_SRR)
 	bwa mem \
 	    -R "@RG\tID:$(BKG_SRR)\tSM:$(BKG)\tLB:$(BKG_SRR)_lib\tPL:ILLUMINA\tPU:$(BKG_SRR)" \
 	    -t $(THREADS) \
