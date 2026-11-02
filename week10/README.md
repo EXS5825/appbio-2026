@@ -36,13 +36,13 @@ How many peaks were called in the SigmaD sample?
 ```
 wc -l peaks/SigmaD_OD0.2_rep1_peaks.narrowPeak peaks/SigmaD_OD0.2_rep2_peaks.narrowPeak
 ```
-Replicate 1: 1028 peaks
-Replicate 2: 1094 peaks
+* Replicate 1: 1028 peaks
+* Replicate 2: 1094 peaks
 
 The peaks seem to agree between the replicates. Here's a visualization in IGV:
-![alt text](image-2.png)
+<img width="2280" height="1566" alt="image" src="https://github.com/user-attachments/assets/2d569897-ed45-477b-8abf-592c1a10e8cb" />
 
-I had to run this to find peaks from replicate 1 that had no overlap in replicate 2: 
+I had to run this command to find peaks from replicate 1 that had no overlap in replicate 2: 
 ```
 bedtools intersect -a peaks/SigmaD_OD0.2_rep1_peaks.narrowPeak \
                    -b peaks/SigmaD_OD0.2_rep2_peaks.narrowPeak -v | head
