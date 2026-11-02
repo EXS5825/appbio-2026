@@ -28,7 +28,7 @@ Made some changes to my `Makefile`:
 * Add `SAMPLE` variable + read groups
 * Add `design.csv` + `batch` target
 * Add all target
-* Add *Pseudomonas protegens* CHA0 genome size for `macs3 -g`
+* Add genome size for `macs3 -g`
 * Adjust the rest of the definitions for the new dataset (samples, SRR number, genome accession, etc.)
 
 # Peak calling
