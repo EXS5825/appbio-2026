@@ -48,8 +48,7 @@ bedtools intersect -a peaks/SigmaD_OD0.2_rep1_peaks.narrowPeak \
                    -b peaks/SigmaD_OD0.2_rep2_peaks.narrowPeak -v | head
 ```
 The ones that didn't match looked weaker. Example:
-![alt text](image.png)
-
+<img width="2284" height="1554" alt="image" src="https://github.com/user-attachments/assets/5798def5-36f5-49e8-ad7d-6447db6d417b" />
 
 ## Reproducibility: 
 Make sure `deeptools` and `macs3` (MACS: Model-based Analysis for ChIP-Seq) are installed. 
