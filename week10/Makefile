@@ -61,7 +61,7 @@ usage:
 	@echo "$$USAGE"
 download:
 	mkdir -p $(FASTQ_DIR)
-	fasterq-dump --outdir $(FASTQ_DIR) --split-files --threads $(THREADS) $(SRR)
+	fasterq-dump --outdir fastq --split-files --threads 4 -X 200000 ERR14089388
 genome: $(GENOME_FASTA)
 $(GENOME_FASTA):                                       
 	mkdir -p $(GENOME_DIR)
