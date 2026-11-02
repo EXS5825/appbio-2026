@@ -68,9 +68,12 @@ git clone https://github.com/EXS5825/appbio-2026.git
 # 2. Navigate to the week10 folder
 cd appbio-2026/week10
 
-# 3. Run the Makefile
+# 3. Preview the steps without running them
+make dry-run
+
+# 4. Run the Makefile
 make all
 
-# 4. Clean
+# 5. Clean
 make clean
 ```
