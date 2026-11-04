@@ -9,7 +9,9 @@ Small changes/fixes:
 * Updated the targets in `.PHONY`
 * Noticed there were duplicate design file definitions, so I deleted the second occurance. 
 
-  <img width="317" height="216" alt="image" src="https://github.com/user-attachments/assets/6077746f-fd18-4d41-b64a-1ce974017bb9" /> 
+  <img width="317" height="216" alt="image" src="https://github.com/user-attachments/assets/6077746f-fd18-4d41-b64a-1ce974017bb9" />
+
+* Updated help target to "make counts" instead of "make count" (target is plural)
   
 ## Reproducibility
 ```
