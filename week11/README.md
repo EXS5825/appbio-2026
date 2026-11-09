@@ -36,7 +36,7 @@ For the RPL3 gene from above:
 Here are a few areas where the expression is clearly different between the two sample types:
 <img width="519" height="317" alt="image" src="https://github.com/user-attachments/assets/29c89509-6eb1-4a96-b998-94494e0e0cfc" />
 
-Raw IGV estimate of the fold change at the pink spike: 
+Raw IGV estimate of the fold change at the pink spike (the miRNA gene): 
 * HBR average = (4.21 + 4.26 + 3.96) / 3 = 4.14
 * UHR average = (131 +82 +100) / 3 = 104.3
 * 104.3 / 4.14 = ~25
@@ -63,3 +63,21 @@ Small changes/fixes:
   <img width="317" height="216" alt="image" src="https://github.com/user-attachments/assets/6077746f-fd18-4d41-b64a-1ce974017bb9" />
 
 * Updated help target to "make counts" instead of "make count" (target is plural)
+
+# Reproducibility
+If the files are already downloaded in the same way as the Biostar Handbook directed, then you can just open a saved session to see exactly what I saw. 
+
+1. Download the course data files and organize into bw/, gtf/, fasta/ folders (might have already done this as a part of the homework).
+
+2. Place week11_session.xml in the parent folder.
+
+Expected file structure:
+```
+parent_directory/
+├── week11_session.xml
+├── bw/
+├── gtf/
+└── fasta/
+```
+
+3. Open in IGV (can drag and drop).
