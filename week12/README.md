@@ -72,6 +72,71 @@ Write an R script that:
 ## Spot-Checking
 Once I had my R script and ran it successfully, I ran some spot checks to make sure the R script accurately read the count value from each individual sample file and placed it in the right column of the combined matrix. Everything matched up. 
 
+Tree:
+```
+.
+├── Makefile
+├── bam
+│   ├── HBR_1.bam
+│   ├── HBR_1.bam.csi
+│   ├── HBR_2.bam
+│   ├── HBR_2.bam.csi
+│   ├── HBR_3.bam
+│   ├── HBR_3.bam.csi
+│   ├── UHR_1.bam
+│   ├── UHR_1.bam.csi
+│   ├── UHR_2.bam
+│   ├── UHR_2.bam.csi
+│   ├── UHR_3.bam
+│   └── UHR_3.bam.csi
+├── bw
+│   ├── HBR_1.bw
+│   ├── HBR_2.bw
+│   ├── HBR_3.bw
+│   ├── UHR_1.bw
+│   ├── UHR_2.bw
+│   └── UHR_3.bw
+├── counts
+│   ├── HBR_1.txt
+│   ├── HBR_1.txt.summary
+│   ├── HBR_2.txt
+│   ├── HBR_2.txt.summary
+│   ├── HBR_3.txt
+│   ├── HBR_3.txt.summary
+│   ├── UHR_1.txt
+│   ├── UHR_1.txt.summary
+│   ├── UHR_2.txt
+│   ├── UHR_2.txt.summary
+│   ├── UHR_3.txt
+│   └── UHR_3.txt.summary
+├── design.csv
+├── fasta
+│   ├── chr22.genome.fa
+│   ├── chr22.genome.fa.1.ht2
+│   ├── chr22.genome.fa.2.ht2
+│   ├── chr22.genome.fa.3.ht2
+│   ├── chr22.genome.fa.4.ht2
+│   ├── chr22.genome.fa.5.ht2
+│   ├── chr22.genome.fa.6.ht2
+│   ├── chr22.genome.fa.7.ht2
+│   ├── chr22.genome.fa.8.ht2
+│   └── chr22.transcripts.fa
+├── fastq
+│   ├── HBR_1_R1.fq
+│   ├── HBR_2_R1.fq
+│   ├── HBR_3_R1.fq
+│   ├── UHR_1_R1.fq
+│   ├── UHR_2_R1.fq
+│   └── UHR_3_R1.fq
+├── gtf
+│   └── chr22.gtf
+├── results
+│   └── gene_counts.csv
+└── src
+    └── combine_gene_counts.r
+
+```
+
 # Comparing with IGV visualization
 Last week, I identified RPL3 (ribosomal protein 3) as highly expressed in IGV. 
 <img width="1614" height="678" alt="image" src="https://github.com/user-attachments/assets/a8c12a22-c70f-4a6f-8ea2-72b8878bc767" />
@@ -103,3 +168,4 @@ Rscript src/combine_gene_counts.r
 
 # Clean
 make clean
+```
