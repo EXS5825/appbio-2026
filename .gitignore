@@ -1,0 +1,10 @@
+*.fq
+*.fastq
+*.bam
+*.bai
+*.bw
+results/
+counts/
+bw/
+bam/
+
